@@ -22,8 +22,8 @@
     table#game_area tr td {
       height: 20px;
       width: 20px;
+      font-size: 0;
     }
-
   </style>
 </head>
 <body>
@@ -31,12 +31,14 @@
   <script>
     var AREA_WIDTH = 12;
     var AREA_HEIGHT = 24;
+    var DEFAULT_COLOR = 'white';
     var PIECE_COLOR = 'green';
+    var RESERVED = 'reserved';
 
     function GameTable(height, width) {
       this.height = height;
       this.width = width;
-      this.pieces = new Array();
+      this.squares = new Array();
 
       this.table = $(document.createElement('table')).attr('id', 'game_area');
 
@@ -60,42 +62,56 @@
     }
 
     GameTable.prototype.drawSquare = function(piece) {
-      $('tr.' + piece.row + ' td.' + piece.column).css('background-color', PIECE_COLOR);
+      $('tr.' + piece.row + ' td.' + piece.column).css('background-color', PIECE_COLOR).text(RESERVED);
     }
 
-    GameTable.prototype.drawPieces = function() {
+    GameTable.prototype.drawSquares = function() {
       gt = this;
-      this.pieces.forEach(function(p) {
+      this.squares.forEach(function(p) {
         gt.drawSquare(p);
       });
     }
 
+    function Block() {
+      this.squares = new Array();
+    }
+
     GameTable.prototype.addPiece = function(row, column) {
-      this.pieces.push(new Square(row, column));
+      this.squares.push(new Square(row, column));
+      this.squares.push(new Square(row + 1, column + 1));
+      this.squares.push(new Square(row, column + 1));
+      this.squares.push(new Square(row, column + 2));
+    }
+
+    GameTable.prototype.canMovePieceDown = function(piece) {
+      if ($('tr.' + (piece.row + 1) + ' td.' + piece.column).text() === RESERVED || piece.row + 1 > AREA_HEIGHT - 1)
+        return false;
+      return true;
     }
 
     GameTable.prototype.movePieceDown = function(piece) {
-      $('tr.' + piece.row + ' td.' + piece.column).css('background-color', 'white');
-      piece.row += 1;
-      $('tr.' + piece.row + ' td.' + piece.column).css('background-color', PIECE_COLOR);
+      if (this.canMovePieceDown(piece)) {
+        $('tr.' + piece.row + ' td.' + piece.column).css('background-color', DEFAULT_COLOR).text('');
+        piece.row += 1;
+        $('tr.' + piece.row + ' td.' + piece.column).css('background-color', PIECE_COLOR).text(RESERVED);
+      }
     }
 
     $(document).ready(function() {
       var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
 
       $('body').append(gt.table);
-      gt.addPiece(6,4);
-      gt.drawPieces();
+      gt.addPiece(1,4);
+      gt.drawSquares();
       
       var timer = $.timer(function() {
-        gt.pieces.forEach(function(p) {
+        gt.squares.forEach(function(p) {
           gt.movePieceDown(p);
         });
       });
 
-      timer.set({ time : 1000, autostart : true });
+      timer.set({ time : 100, autostart : true });
     });
-
   </script>
 
 </body>
