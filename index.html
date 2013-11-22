@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>tetris.js</title>
+  <script src="js/jquery-1.10.2.min.js"></script>
+  <script src="js/jquery.timer.js"></script>
+
+  <style type="text/css">
+    div#hidden {
+      display: none;
+    }
+
+    div#game_area {
+      border: 1px solid black;
+      margin: 50px auto;
+      height: 600px;
+      width: 300px;
+    }
+
+    div.piece {
+      display: inline-block;
+    }
+
+    div.brick {
+      display: inline-block;
+      height: 18px;
+      width: 18px;
+      background-color: green;
+      border: 1px solid darkgrey;
+      margin: 0;
+      padding: 0;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="hidden">
+    <div class="piece" id="1">
+      <div class="brick"></div>
+      <div class="brick"></div>
+      <div class="brick"></div>
+      <div class="brick"></div>
+    </div>
+  </div>
+
+  <div id="game_area">
+  </div>
+
+  <script>
+
+    $(document).ready(function() {
+      piece_added = false;
+
+      if (!piece_added) {
+        addPiece($('#1'));
+      }
+
+      var timer = $.timer(function() {
+        updatePieceStatus($('#1'));
+      });
+
+      timer.set({ time : 1000, autostart : true })
+    });
+
+    function updatePieceStatus(element) {
+      if (parseInt($(element).css('margin-top')) == 580) {
+        $(element).remove();
+      }
+
+      $(element).css('margin-top', function(index, value) {
+        return (parseInt($(this).css('margin-top')) < 580) ? (parseInt(value) + 20) : 580;
+      });
+    }
+
+    function addPiece(element) {
+      $('#game_area').append(element);
+    }
+
+  </script>
+
+</body>
+</html>
