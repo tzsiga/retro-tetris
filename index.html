@@ -12,72 +12,63 @@
       display: none;
     }
 
-    div#game_area {
+    table#game_area {
       border: 1px solid black;
       margin: 50px auto;
-      height: 600px;
-      width: 300px;
     }
 
-    div.piece {
-      display: inline-block;
+    table#game_area tr {}
+
+    table#game_area tr td {
+      height: 20px;
+      width: 20px;
     }
 
-    div.brick {
-      display: inline-block;
-      height: 18px;
-      width: 18px;
-      background-color: green;
-      border: 1px solid darkgrey;
-      margin: 0;
-      padding: 0;
-      float: left;
-    }
   </style>
 </head>
 <body>
 
-  <div id="hidden">
-    <div class="piece" id="1">
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-    </div>
-  </div>
-
-  <div id="game_area">
-  </div>
-
   <script>
+    var AREA_WIDTH = 12;
+    var AREA_HEIGHT = 24;
+
+    function GameTable(height, width) {
+      this.height = height;
+      this.width = width;
+
+      this.table = $(document.createElement('table')).attr('id', 'game_area');
+
+      for (var i = 0; i < height; i++) {
+        var new_row = $(document.createElement('tr')).attr('class', i);
+
+        for (var j = 0; j < width; j++) {
+          $(new_row).append($(document.createElement('td')).attr('class', j));
+        }
+
+        $(this.table).append(new_row);
+      }
+
+      return this;
+    }
+
+    GameTable.prototype.addPiece = function(row, column) {
+      $('tr.' + row + ' td.' + column).css('background-color', 'red');
+    };
 
     $(document).ready(function() {
-      piece_added = false;
 
-      if (!piece_added) {
-        addPiece($('#1'));
-      }
+      var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
 
-      var timer = $.timer(function() {
-        updatePieceStatus($('#1'));
-      });
+      $('body').append(gt.table);
+      gt.addPiece(5,6);
+      gt.addPiece(5,7);
+      gt.addPiece(5,8);
+      
+      // timer setup
 
-      timer.set({ time : 1000, autostart : true })
+      // event listening
+
     });
-
-    function updatePieceStatus(element) {
-      if (parseInt($(element).css('margin-top')) == 580) {
-        $(element).remove();
-      }
-
-      $(element).css('margin-top', function(index, value) {
-        return (parseInt($(this).css('margin-top')) < 580) ? (parseInt(value) + 20) : 580;
-      });
-    }
-
-    function addPiece(element) {
-      $('#game_area').append(element);
-    }
 
   </script>
 
