@@ -29,6 +29,8 @@
 <body>
 
   <script>
+    "use strict";
+
     var AREA_WIDTH = 12;
     var AREA_HEIGHT = 24;
     var DEFAULT_COLOR = 'white';
@@ -38,7 +40,7 @@
     function GameTable(height, width) {
       this.height = height;
       this.width = width;
-      this.squares = new Array();
+      this.blocks = new Array();
 
       this.table = $(document.createElement('table')).attr('id', 'game_area');
 
@@ -55,41 +57,53 @@
       return this;
     }
 
-    function Square(row, column) {
-      this.row = row;
-      this.column = column;
-      return this;
+    GameTable.prototype.addBlock = function(row, column) {
+      this.blocks.push(new Block(row, column));
     }
 
-    GameTable.prototype.drawSquare = function(piece) {
-      $('tr.' + piece.row + ' td.' + piece.column).css('background-color', PIECE_COLOR).text(RESERVED);
-    }
-
-    GameTable.prototype.drawSquares = function() {
-      gt = this;
-      this.squares.forEach(function(p) {
-        gt.drawSquare(p);
+    GameTable.prototype.drawBlocks = function() {
+      var gt = this;
+      gt.blocks.forEach(function(b) {
+        b.drawSquares();
       });
     }
 
-    function Block() {
+    function Block(row, column) {
       this.squares = new Array();
+      this.addSquares(row, column);
     }
 
-    GameTable.prototype.addPiece = function(row, column) {
+    Block.prototype.addSquares = function(row, column) {
       this.squares.push(new Square(row, column));
       this.squares.push(new Square(row + 1, column + 1));
       this.squares.push(new Square(row, column + 1));
       this.squares.push(new Square(row, column + 2));
     }
 
-    GameTable.prototype.canMovePieceDown = function(piece) {
+    Block.prototype.drawSquares = function() {
+      var b = this;
+      this.squares.forEach(function(p) {
+        p.draw();
+      });
+    }
+
+    function Square(row, column) {
+      this.row = row;
+      this.column = column;
+      return this;
+    }
+
+    Square.prototype.draw = function() {
+      $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
+    }
+
+    Square.prototype.canMoveDown = function(piece) {
       if ($('tr.' + (piece.row + 1) + ' td.' + piece.column).text() === RESERVED || piece.row + 1 > AREA_HEIGHT - 1)
         return false;
       return true;
     }
 
-    GameTable.prototype.movePieceDown = function(piece) {
+    Square.prototype.moveDown = function(piece) {
       if (this.canMovePieceDown(piece)) {
         $('tr.' + piece.row + ' td.' + piece.column).css('background-color', DEFAULT_COLOR).text('');
         piece.row += 1;
@@ -101,13 +115,18 @@
       var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
 
       $('body').append(gt.table);
-      gt.addPiece(1,4);
-      gt.drawSquares();
+      gt.addBlock(1,4);
+      gt.drawBlocks();
       
       var timer = $.timer(function() {
+        
+        // for each block: move down
+
+        /*
         gt.squares.forEach(function(p) {
           gt.movePieceDown(p);
         });
+        */
       });
 
       timer.set({ time : 100, autostart : true });
