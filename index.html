@@ -81,9 +81,14 @@
     }
 
     Block.prototype.drawSquares = function() {
-      var b = this;
-      this.squares.forEach(function(p) {
-        p.draw();
+      this.squares.forEach(function(s) {
+        s.draw();
+      });
+    }
+
+    Block.prototype.moveDown = function() {
+      this.squares.forEach(function(s) {
+        s.moveDown();
       });
     }
 
@@ -97,17 +102,17 @@
       $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
     }
 
-    Square.prototype.canMoveDown = function(piece) {
-      if ($('tr.' + (piece.row + 1) + ' td.' + piece.column).text() === RESERVED || piece.row + 1 > AREA_HEIGHT - 1)
+    Square.prototype.canMoveDown = function() {
+      if ($('tr.' + (this.row + 1) + ' td.' + this.column).text() === RESERVED || this.row + 1 > AREA_HEIGHT - 1)
         return false;
       return true;
     }
 
-    Square.prototype.moveDown = function(piece) {
-      if (this.canMovePieceDown(piece)) {
-        $('tr.' + piece.row + ' td.' + piece.column).css('background-color', DEFAULT_COLOR).text('');
-        piece.row += 1;
-        $('tr.' + piece.row + ' td.' + piece.column).css('background-color', PIECE_COLOR).text(RESERVED);
+    Square.prototype.moveDown = function() {
+      if (this.canMoveDown()) {
+        $('tr.' + this.row + ' td.' + this.column).css('background-color', DEFAULT_COLOR).text('');
+        this.row += 1;
+        $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
       }
     }
 
@@ -119,14 +124,9 @@
       gt.drawBlocks();
       
       var timer = $.timer(function() {
-        
-        // for each block: move down
-
-        /*
-        gt.squares.forEach(function(p) {
-          gt.movePieceDown(p);
+        gt.blocks.forEach(function(b) {
+          b.moveDown();
         });
-        */
       });
 
       timer.set({ time : 100, autostart : true });
