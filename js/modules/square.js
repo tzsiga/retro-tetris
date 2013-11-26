@@ -16,21 +16,15 @@ define(['jquery'], function($) {
   }
 
   Square.prototype.moveDown = function(offset) {
-    $('tr.' + this.row + ' td.' + this.column).css('background-color', DEFAULT_COLOR).text('');
     this.row += (typeof offset !== 'undefined') ? offset : 1;
-    $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
   }
 
   Square.prototype.moveLeft = function() {
-    $('tr.' + this.row + ' td.' + this.column).css('background-color', DEFAULT_COLOR).text('');
     this.column -= 1;
-    $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
   }
 
   Square.prototype.moveRight = function() {
-    $('tr.' + this.row + ' td.' + this.column).css('background-color', DEFAULT_COLOR).text('');
     this.column += 1;
-    $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
   }
 
   return Square;

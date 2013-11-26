@@ -22,11 +22,21 @@ define(['jquery', 'block'], function($, Block) {
 
   GameTable.prototype.init = function() {
     this.addBlock(1,4);
-    this.drawBlocks();
   }
 
   GameTable.prototype.addBlock = function(posX, posY) {
     this.blocks.push(new Block(posX, posY));
+  }
+
+  GameTable.prototype.redraw = function() {
+    this.clear();
+    this.drawBlocks();
+  }
+
+  GameTable.prototype.clear = function() {
+    $(this.table).find('td').each(function(id, cell) {
+      $(cell).css('background-color', DEFAULT_COLOR).text('');
+    });
   }
 
   GameTable.prototype.drawBlocks = function() {

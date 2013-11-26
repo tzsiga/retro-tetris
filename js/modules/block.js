@@ -59,7 +59,7 @@ define(['square'], function(Square) {
   }
 
   Block.prototype.canMoveRight = function() {
-    return this.getEdges().right < AREA_WIDTH;
+    return this.getEdges().right < AREA_WIDTH - 1;
   }
 
   Block.prototype.moveDown = function() {
