@@ -4,20 +4,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>tetris.js</title>
-  <script src="js/jquery-1.10.2.min.js"></script>
-  <script src="js/jquery.timer.js"></script>
-
+  <script data-main="js/config" src="js/lib/require.js"></script>
   <style type="text/css">
-    div#hidden {
-      display: none;
-    }
-
     table#game_area {
       border: 1px solid black;
       margin: 50px auto;
     }
-
-    table#game_area tr {}
 
     table#game_area tr td {
       height: 20px;
@@ -27,7 +19,6 @@
   </style>
 </head>
 <body>
-
   <script>
     "use strict";
 
@@ -38,155 +29,13 @@
     var RESERVED = 'reserved';
     var TIMESTAP = 200;
 
+    require(['config'], function() {
+      require(['app']);
+    });
 
     function echo(arg) {
       if (window.console) console.log(arg);
     }
-
-    // ---- GameTable ---------------------------
-
-    function GameTable(height, width) {
-      this.height = height;
-      this.width = width;
-      this.blocks = new Array();
-
-      this.table = $(document.createElement('table')).attr('id', 'game_area');
-
-      for (var i = 0; i < height; i++) {
-        var new_row = $(document.createElement('tr')).attr('class', i);
-
-        for (var j = 0; j < width; j++) {
-          $(new_row).append($(document.createElement('td')).attr('class', j));
-        }
-
-        $(this.table).append(new_row);
-      }
-
-      return this;
-    }
-
-    GameTable.prototype.init = function() {
-      this.addBlock(1,4);
-      this.drawBlocks();
-    }
-
-    GameTable.prototype.addBlock = function(posX, posY) {
-      this.blocks.push(new Block(posX, posY));
-    }
-
-    GameTable.prototype.drawBlocks = function() {
-      var gt = this;
-      gt.blocks.forEach(function(b) {
-        b.drawSquares();
-      });
-    }
-
-    // ---- Block -------------------------------
-
-    function Block(posX, posY) {
-      this.squares = new Array();
-      this.addSquares(posX, posY);
-    }
-
-    Block.prototype.addSquares = function(posX, posY) {
-      this.squares.push(new Square(posX, posY));
-      this.squares.push(new Square(posX + 1, posY + 1));
-      this.squares.push(new Square(posX, posY + 1));
-      this.squares.push(new Square(posX, posY + 2));
-    }
-
-    Block.prototype.drawSquares = function() {
-      this.squares.forEach(function(s) {
-        s.draw();
-      });
-    }
-
-    Block.prototype.getWidth = function() {
-      var leftEdge = AREA_WIDTH;
-      var rightEdge = 0;
-
-      this.squares.forEach(function(s) {
-        if (s.column < leftEdge)
-          leftEdge = s.column;
-        if (s.column > rightEdge)
-          rightEdge = s.column;
-      });
-
-      return rightEdge - leftEdge + 1;
-    }
-
-    Block.prototype.numOfMovableSquares = function() {
-      var n = 0;
-
-      this.squares.forEach(function(s) {
-        if (s.canMoveDown())
-          n++;
-      });
-
-      return n;
-    }
-
-    Block.prototype.canMoveDown = function() {
-      if (this.numOfMovableSquares() < this.getWidth())
-        return false;
-      
-      return true;
-    }
-
-    Block.prototype.moveDown = function() {
-      if (this.canMoveDown()) {
-        this.squares.forEach(function(s) {
-          s.moveDown();
-        });
-      }
-    }
-
-    // ---- Square ------------------------------
-
-    function Square(row, column) {
-      this.row = row;
-      this.column = column;
-    }
-
-    Square.prototype.draw = function() {
-      $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
-    }
-
-    Square.prototype.canMoveDown = function() {
-      if ($('tr.' + (this.row + 1) + ' td.' + this.column).text() === RESERVED || this.row + 1 > AREA_HEIGHT - 1)
-        return false;
-      return true;
-    }
-
-    Square.prototype.moveDown = function() {
-      if (this.canMoveDown()) {
-        $('tr.' + this.row + ' td.' + this.column).css('background-color', DEFAULT_COLOR).text('');
-        this.row += 1;
-        $('tr.' + this.row + ' td.' + this.column).css('background-color', PIECE_COLOR).text(RESERVED);
-      }
-    }
-
-    // ---- event handling -------------------
-
-    $(document).ready(function() {
-      $(document).bind('contextmenu', function(e) {
-        //e.preventDefault();
-      });
-
-      var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
-
-      $('body').append(gt.table);
-      gt.init();
-
-      var timer = $.timer(function() {
-        gt.blocks.forEach(function(b) {
-          b.moveDown();
-        });
-      });
-
-      timer.set({ time : TIMESTAP, autostart : true });
-    });
   </script>
-
 </body>
 </html>
