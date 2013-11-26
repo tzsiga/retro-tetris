@@ -1,4 +1,4 @@
-define(['jquery', 'square'], function($, Square) {
+define(['square'], function(Square) {
 
   function Block(posX, posY) {
     this.squares = new Array();
@@ -18,7 +18,7 @@ define(['jquery', 'square'], function($, Square) {
     });
   }
 
-  Block.prototype.getWidth = function() {
+  Block.prototype.getEdges = function() {
     var leftEdge = AREA_WIDTH;
     var rightEdge = 0;
 
@@ -29,7 +29,11 @@ define(['jquery', 'square'], function($, Square) {
         rightEdge = s.column;
     });
 
-    return rightEdge - leftEdge + 1;
+    return { left: leftEdge, right: rightEdge };
+  }
+
+  Block.prototype.getWidth = function() {
+    return this.getEdges().right - this.getEdges().left + 1;
   }
 
   Block.prototype.numOfMovableSquares = function() {
@@ -50,6 +54,14 @@ define(['jquery', 'square'], function($, Square) {
     return true;
   }
 
+  Block.prototype.canMoveLeft = function() {
+    return this.getEdges().left > 0;
+  }
+
+  Block.prototype.canMoveRight = function() {
+    return this.getEdges().right < AREA_WIDTH;
+  }
+
   Block.prototype.moveDown = function() {
     if (this.canMoveDown()) {
       this.squares.forEach(function(s) {
@@ -58,8 +70,20 @@ define(['jquery', 'square'], function($, Square) {
     }
   }
 
-  Block.prototype.canMoveRight = function() {
-    return true;
+  Block.prototype.moveLeft = function() {
+    if (this.canMoveLeft()) {
+      this.squares.forEach(function(s) {
+        s.moveLeft();
+      });
+    }
+  }
+
+  Block.prototype.moveRight = function() {
+    if (this.canMoveRight()) {
+      this.squares.forEach(function(s) {
+        s.moveRight();
+      });
+    }
   }
 
   return Block;

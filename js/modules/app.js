@@ -9,6 +9,8 @@ define(['jquery', 'jquery_timer', 'gametable'], function($, jquery_timer, GameTa
     var timer = $.timer(function() {
       gt.blocks.forEach(function(b) {
         b.moveDown();
+        //b.moveLeft();
+        //b.moveRight();
       });
     });
 
