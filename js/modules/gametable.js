@@ -25,6 +25,15 @@ define(['jquery', 'block'], function($, Block) {
     this.blocks.push(block);
   }
 
+/*
+  GameTable.prototype.isReservedCell = function(x, y) {
+    if ($('tr.' + y + ' td.' + x).text() === RESERVED)
+      return true;
+
+    return false;
+  }
+*/
+
   GameTable.prototype.redraw = function() {
     this.clear();
     this.drawBlocks();

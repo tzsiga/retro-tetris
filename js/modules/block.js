@@ -39,22 +39,32 @@ define(['square'], function(Square) {
   Block.prototype.getEdges = function() {
     var leftEdge = AREA_WIDTH;
     var rightEdge = 0;
+    var topEdge = AREA_HEIGHT;
+    var bottomEdge = 0;
 
     this.squares.forEach(function(s) {
       if (s.column < leftEdge)
         leftEdge = s.column;
       if (s.column > rightEdge)
         rightEdge = s.column;
+      if (s.row < topEdge)
+        topEdge = s.row;
+      if (s.row > bottomEdge)
+        bottomEdge = s.row;
     });
 
-    return { left: leftEdge, right: rightEdge };
+    return { left: leftEdge, right: rightEdge, top: topEdge, bottom: bottomEdge };
   }
 
   Block.prototype.getWidth = function() {
     return this.getEdges().right - this.getEdges().left + 1;
   }
 
-  Block.prototype.numOfMovableSquares = function() {
+  Block.prototype.getHeight = function() {
+    return this.getEdges().bottom - this.getEdges().top + 1;
+  }
+
+  Block.prototype.numOfMovableSquaresDown = function() {
     var n = 0;
 
     this.squares.forEach(function(s) {
@@ -65,19 +75,60 @@ define(['square'], function(Square) {
     return n;
   }
 
+  Block.prototype.numOfMovableSquaresLeft = function() {
+    var n = 0;
+
+    this.squares.forEach(function(s) {
+      if (s.canMoveLeft())
+        n++;
+    });
+
+    return n;
+  }
+
+  Block.prototype.numOfMovableSquaresRight = function() {
+    var n = 0;
+
+    this.squares.forEach(function(s) {
+      if (s.canMoveRight())
+        n++;
+    });
+
+    return n;
+  }
+
   Block.prototype.canMoveDown = function() {
-    if (this.numOfMovableSquares() < this.getWidth())
+    if (this.numOfMovableSquaresDown() < this.getWidth())
       return false;
-    
     return true;
   }
 
   Block.prototype.canMoveLeft = function() {
-    return this.getEdges().left > 0;
+    if (this.numOfMovableSquaresLeft() < this.getHeight())
+      return false;
+    return true;
   }
 
   Block.prototype.canMoveRight = function() {
-    return this.getEdges().right < AREA_WIDTH - 1;
+    if (this.numOfMovableSquaresRight() < this.getHeight())
+      return false;
+    return true;
+  }
+
+  Block.prototype.move = function(direction) {
+    
+
+    switch (direction) {
+      case 'left':
+        this.moveLeft();
+        break;
+      case 'right':
+        this.moveRight();
+        break;
+      case 'down':
+        this.moveDown();
+        break;
+    }
   }
 
   Block.prototype.moveDown = function() {
@@ -115,52 +166,52 @@ define(['square'], function(Square) {
   }
 
   Block.prototype.addType1 = function(posX, posY) {
-    this.squares.push(new Square(posX, posY));
-    this.squares.push(new Square(posX + 1, posY + 1));
-    this.squares.push(new Square(posX, posY + 1));
-    this.squares.push(new Square(posX, posY + 2));
+    this.squares.push(new Square(posX, posY, 'green'));
+    this.squares.push(new Square(posX + 1, posY + 1, 'green'));
+    this.squares.push(new Square(posX, posY + 1, 'green'));
+    this.squares.push(new Square(posX, posY + 2, 'green'));
   }
 
   Block.prototype.addType2 = function(posX, posY) {
-    this.squares.push(new Square(posX, posY));
-    this.squares.push(new Square(posX, posY + 1));
-    this.squares.push(new Square(posX + 1, posY));
-    this.squares.push(new Square(posX + 1, posY + 1));
+    this.squares.push(new Square(posX, posY, 'blue'));
+    this.squares.push(new Square(posX, posY + 1, 'blue'));
+    this.squares.push(new Square(posX + 1, posY, 'blue'));
+    this.squares.push(new Square(posX + 1, posY + 1, 'blue'));
   }
 
   Block.prototype.addType3 = function(posX, posY) {
-    this.squares.push(new Square(posX, posY));
-    this.squares.push(new Square(posX, posY + 1));
-    this.squares.push(new Square(posX, posY + 2));
-    this.squares.push(new Square(posX, posY + 3));
+    this.squares.push(new Square(posX, posY, 'teal'));
+    this.squares.push(new Square(posX, posY + 1, 'teal'));
+    this.squares.push(new Square(posX, posY + 2, 'teal'));
+    this.squares.push(new Square(posX, posY + 3, 'teal'));
   }
 
   Block.prototype.addType4 = function(posX, posY) {
-    this.squares.push(new Square(posX, posY));
-    this.squares.push(new Square(posX + 1, posY));
-    this.squares.push(new Square(posX + 1, posY + 1));
-    this.squares.push(new Square(posX + 2, posY + 1));
+    this.squares.push(new Square(posX, posY, 'orange'));
+    this.squares.push(new Square(posX + 1, posY, 'orange'));
+    this.squares.push(new Square(posX + 1, posY + 1, 'orange'));
+    this.squares.push(new Square(posX + 2, posY + 1, 'orange'));
   }
 
   Block.prototype.addType5 = function(posX, posY) {
-    this.squares.push(new Square(posX, posY + 1));
-    this.squares.push(new Square(posX + 1, posY + 1));
-    this.squares.push(new Square(posX + 1, posY));
-    this.squares.push(new Square(posX + 2, posY));
+    this.squares.push(new Square(posX, posY + 1, 'orange'));
+    this.squares.push(new Square(posX + 1, posY + 1, 'orange'));
+    this.squares.push(new Square(posX + 1, posY, 'orange'));
+    this.squares.push(new Square(posX + 2, posY, 'orange'));
   }
 
   Block.prototype.addType6 = function(posX, posY) {
-    this.squares.push(new Square(posX + 1, posY));
-    this.squares.push(new Square(posX + 1, posY + 1));
-    this.squares.push(new Square(posX + 1, posY + 2));
-    this.squares.push(new Square(posX, posY + 2));
+    this.squares.push(new Square(posX + 1, posY, 'gray'));
+    this.squares.push(new Square(posX + 1, posY + 1, 'gray'));
+    this.squares.push(new Square(posX + 1, posY + 2, 'gray'));
+    this.squares.push(new Square(posX, posY + 2, 'gray'));
   }
 
   Block.prototype.addType7 = function(posX, posY) {
-    this.squares.push(new Square(posX, posY));
-    this.squares.push(new Square(posX, posY + 1));
-    this.squares.push(new Square(posX, posY + 2));
-    this.squares.push(new Square(posX + 1, posY + 2));
+    this.squares.push(new Square(posX, posY, 'gray'));
+    this.squares.push(new Square(posX, posY + 1, 'gray'));
+    this.squares.push(new Square(posX, posY + 2, 'gray'));
+    this.squares.push(new Square(posX + 1, posY + 2, 'gray'));
   }
 
   return Block;
