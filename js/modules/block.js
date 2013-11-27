@@ -67,7 +67,9 @@ define(['square'], function(Square) {
       this.squares.forEach(function(s) {
         s.moveDown();
       });
+      return true;
     }
+    return false;
   }
 
   Block.prototype.moveLeft = function() {
@@ -84,6 +86,14 @@ define(['square'], function(Square) {
         s.moveRight();
       });
     }
+  }
+
+  // todo
+  Block.prototype.RotateLeft = function() {
+  }
+
+  // todo
+  Block.prototype.RotateRight = function() {
   }
 
   return Block;

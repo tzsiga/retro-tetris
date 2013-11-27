@@ -1,4 +1,4 @@
-define(['jquery', 'jquery_timer', 'gametable'], function($, jquery_timer, GameTable) {
+define(['jquery', 'jquery_timer', 'gametable', 'block'], function($, jquery_timer, GameTable, Block) {
 
   $(document).ready(function() {
     var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
@@ -7,25 +7,28 @@ define(['jquery', 'jquery_timer', 'gametable'], function($, jquery_timer, GameTa
 
     $('body').keydown(function(e) {
       if (e.keyCode == 37) { // left
-        gt.blocks.forEach(function(b) {
-          b.moveLeft();
-          gt.redraw();
-        });
+        e.preventDefault();
+        gt.getFallingBlock().moveLeft();
       } else if (e.keyCode == 39) { // right
-        gt.blocks.forEach(function(b) {
-          b.moveRight();
-          gt.redraw();
-        });
+        e.preventDefault();
+        gt.getFallingBlock().moveRight();
       } else if (e.keyCode == 38) { // up
+        e.preventDefault();
+        //gt.getFallingBlock();
       } else if (e.keyCode == 40) { // down
+        e.preventDefault();
+        //gt.getFallingBlock();
       }
+
+      gt.redraw();
     });
 
     var timer = $.timer(function() {
-      gt.blocks.forEach(function(b) {
-        b.moveDown();
-        gt.redraw();
-      });
+      if (!gt.getFallingBlock().moveDown()) {
+        gt.addBlock(new Block(0,4));
+      }
+
+      gt.redraw();
     });
 
     timer.set({ time : TIMESTAP, autostart : true });

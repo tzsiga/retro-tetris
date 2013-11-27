@@ -47,5 +47,9 @@ define(['jquery', 'block'], function($, Block) {
     });
   }
 
+  GameTable.prototype.getFallingBlock = function() {
+    return this.blocks[this.blocks.length - 1];
+  }
+
   return GameTable;
 });
