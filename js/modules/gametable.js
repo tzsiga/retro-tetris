@@ -17,12 +17,8 @@ define(['jquery', 'block'], function($, Block) {
       $(this.table).append(new_row);
     }
 
-    this.init();
+    this.addBlock(new Block(4,0));
     return this;
-  }
-
-  GameTable.prototype.init = function() {
-    this.addBlock(new Block(0,4));
   }
 
   GameTable.prototype.addBlock = function(block) {

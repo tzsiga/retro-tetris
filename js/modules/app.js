@@ -25,7 +25,7 @@ define(['jquery', 'jquery_timer', 'gametable', 'block'], function($, jquery_time
 
     var timer = $.timer(function() {
       if (!gt.getFallingBlock().moveDown()) {
-        gt.addBlock(new Block(0,4));
+        gt.addBlock(new Block(4,0));
       }
 
       gt.redraw();

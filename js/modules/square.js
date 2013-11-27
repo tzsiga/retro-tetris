@@ -1,8 +1,8 @@
 define(['jquery'], function($) {
 
-  function Square(row, column) {
-    this.row = row;
-    this.column = column;
+  function Square(x, y) {
+    this.column = x;
+    this.row = y;
   }
 
   Square.prototype.draw = function() {
