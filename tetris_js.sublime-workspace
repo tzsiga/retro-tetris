@@ -1,0 +1,375 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"mo",
+				"moveDown"
+			],
+			[
+				"mov",
+				"moveLeft"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"po",
+				"posY"
+			],
+			[
+				"p",
+				"posX"
+			],
+			[
+				"can",
+				"canMoveDown"
+			],
+			[
+				"pr",
+				"prototype"
+			],
+			[
+				"re",
+				"redraw"
+			],
+			[
+				"c",
+				"condition"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"r",
+				"rightEdge"
+			],
+			[
+				"squ",
+				"Square"
+			],
+			[
+				"col",
+				"cols"
+			],
+			[
+				"l",
+				"leftEdge"
+			],
+			[
+				"A",
+				"AREA_WIDTH"
+			],
+			[
+				"co",
+				"cols"
+			],
+			[
+				"ge",
+				"getWidth"
+			],
+			[
+				"s",
+				"squares"
+			],
+			[
+				"d",
+				"draw"
+			],
+			[
+				"blo",
+				"blocks"
+			],
+			[
+				"add",
+				"addSquare"
+			],
+			[
+				"pro",
+				"proto	Prototype"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"w",
+				"white"
+			],
+			[
+				"pi",
+				"piece"
+			],
+			[
+				"cl",
+				"column"
+			],
+			[
+				"m",
+				"movePieceDown"
+			],
+			[
+				"new",
+				"new_table"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"a",
+				"append"
+			],
+			[
+				"AR",
+				"AREA_WIDTH"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"rem",
+				"removePiece"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"wi",
+				"width"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"space",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/userdata/taroczyt/Desktop/dep",
+		"/D/workspace/etc/tetris.js/js/modules/block.js",
+		"/D/workspace/etc/tetris.js/index.html",
+		"/D/workspace/etc/tetris.js/js/modules/gametable.js",
+		"/D/workspace/etc/tetris.js/js/modules/app.js",
+		"/D/workspace/etc/tetris.js/js/lib/jquery-1.10.2.min.js",
+		"/D/workspace/etc/tetris.js/js/modules/square.js",
+		"/D/userdata/taroczyt/Desktop/proxy.txt",
+		"/D/workspace/etc/tetris.js/js/config.js",
+		"/D/userdata/taroczyt/Desktop/trunk/Tools and Processes tutorial.md",
+		"/D/workspace/etc/tetris.js/js/modules/debug.js",
+		"/D/workspace/etc/tetris.js/js/common.js",
+		"/D/workspace/etc/tetris.js/js/modules/main.js",
+		"/D/workspace/etc/tetris.js/js/modules/consts.js",
+		"/D/workspace/etc/tetris.js/js/debug.js",
+		"/D/workspace/etc/tetris.js/js/square.js",
+		"/D/workspace/etc/tetris.js/js/block.js",
+		"/D/workspace/etc/tetris.js/js/gametable.js",
+		"/D/userdata/taroczyt/Application Data/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/userdata/taroczyt/Desktop/tetris.js/index.html",
+		"/D/userdata/taroczyt/Desktop/tetris.js/js/plugins.js",
+		"/D/userdata/taroczyt/Desktop/tetris.js/js/main.js",
+		"/D/userdata/taroczyt/Desktop/jquery.timer.js",
+		"/D/userdata/taroczyt/Desktop/html5-boilerplate-4.3.0/index.html",
+		"/D/userdata/taroczyt/Desktop/tetris.js/doc/css.md",
+		"/D/userdata/taroczyt/Desktop/html5-boilerplate-4.3.0/crossdomain.xml",
+		"/D/userdata/taroczyt/Desktop/Tools and Processes tutorial.md",
+		"/C/apps/putty.reg",
+		"/D/userdata/taroczyt/My Documents/sublime_3_fix.reg",
+		"/D/userdata/taroczyt/Desktop/Tools and Processes tutorial - Copy.md.nfo",
+		"/D/userdata/taroczyt/Desktop/Tools and Processes tutorial - Copy.md"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"isReservedCell",
+			"na",
+			"numOfMovableSquares",
+			"canMoveLeft",
+			"canMoveDown",
+			"grey",
+			"drawSquares",
+			"jquery",
+			"column",
+			"row",
+			"piece",
+			"addPiece",
+			"white",
+			"drawsquares",
+			"pieces",
+			"addPiece",
+			"new_table",
+			"></",
+			"checkPieceStatus",
+			">\n",
+			"script"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"numOfMovableSquaresDown",
+			"gray",
+			"posY",
+			"posX",
+			"this",
+			"addBlock",
+			"drawSquares",
+			"squares",
+			"addSquare",
+			"table",
+			"updatePieceStatus",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "tetris_js.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 199.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

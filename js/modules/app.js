@@ -14,10 +14,11 @@ define(['jquery', 'jquery_timer', 'gametable', 'block'], function($, jquery_time
         gt.getFallingBlock().moveRight();
       } else if (e.keyCode == 38) { // up
         e.preventDefault();
-        //gt.getFallingBlock();
+        gt.getFallingBlock().rotateLeft();
       } else if (e.keyCode == 40) { // down
         e.preventDefault();
-        //gt.getFallingBlock();
+        //gt.getFallingBlock().rotateRight();
+        gt.getFallingBlock().moveDown();
       }
 
       gt.redraw();

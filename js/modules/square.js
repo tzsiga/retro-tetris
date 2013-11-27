@@ -4,6 +4,12 @@ define(['jquery'], function($) {
     this.column = x;
     this.row = y;
     this.color = (typeof color !== 'undefined') ? color : PIECE_COLOR;
+
+    this.isReservedCell = function(x, y) {
+      if ($('tr.' + y + ' td.' + x).text() === RESERVED)
+        return true;
+      return false;
+    }
   }
 
   Square.prototype.draw = function() {
@@ -11,25 +17,25 @@ define(['jquery'], function($) {
   }
 
   Square.prototype.canMoveDown = function() {
-    if (isReservedCell(this.column, this.row + 1) || this.row + 1 > AREA_HEIGHT - 1)
+    if (this.isReservedCell(this.column, this.row + 1) || this.row + 1 > AREA_HEIGHT - 1)
       return false;
     return true;
   }
 
   Square.prototype.canMoveLeft = function() {
-    if (isReservedCell(this.column - 1, this.row) || this.column - 1 < 0)
+    if (this.isReservedCell(this.column - 1, this.row) || this.column - 1 < 0)
       return false;
     return true;
   }
 
   Square.prototype.canMoveRight = function() {
-    if (isReservedCell(this.column + 1, this.row) || this.column + 1 > AREA_WIDTH - 1)
+    if (this.isReservedCell(this.column + 1, this.row) || this.column + 1 > AREA_WIDTH - 1)
       return false;
     return true;
   }
 
-  Square.prototype.moveDown = function(offset) {
-    this.row += (typeof offset !== 'undefined') ? offset : 1;
+  Square.prototype.moveDown = function() {
+    this.row += 1;
   }
 
   Square.prototype.moveLeft = function() {

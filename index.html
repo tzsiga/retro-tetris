@@ -29,13 +29,6 @@
     var RESERVED = 'reserved';
     var TIMESTAP = 200;
 
-    function isReservedCell(x, y) {
-      if ($('tr.' + y + ' td.' + x).text() === RESERVED) {
-        return true;
-      }
-      return false;
-    }
-
     require(['config'], function() {
       require(['app']);
     });
