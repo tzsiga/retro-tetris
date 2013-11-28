@@ -1,0 +1,10 @@
+table#game_area {
+  border: 1px solid black;
+  margin: 50px auto;
+}
+
+table#game_area tr td {
+  height: 20px;
+  width: 20px;
+  font-size: 0;
+}
