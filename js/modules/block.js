@@ -87,14 +87,14 @@ define(['square'], function(Square) {
       var bottomEdge = 0;
 
       this.squares.forEach(function(s) {
-        if (s.column < leftEdge)
-          leftEdge = s.column;
-        if (s.column > rightEdge)
-          rightEdge = s.column;
-        if (s.row < topEdge)
-          topEdge = s.row;
-        if (s.row > bottomEdge)
-          bottomEdge = s.row;
+        if (s.x < leftEdge)
+          leftEdge = s.x;
+        if (s.x > rightEdge)
+          rightEdge = s.x;
+        if (s.y < topEdge)
+          topEdge = s.y;
+        if (s.y > bottomEdge)
+          bottomEdge = s.y;
       });
 
       return { left: leftEdge, right: rightEdge, top: topEdge, bottom: bottomEdge };
