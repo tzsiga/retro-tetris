@@ -1,4 +1,4 @@
-define(['jasmine-html'], function(jasmine) {
+define(['jasmine-html', 'common'], function(jasmine) {
 
   (function() {
     var jasmineEnv = jasmine.getEnv();

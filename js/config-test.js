@@ -10,6 +10,7 @@ require.config({
     jquery_timer: 'lib/jquery.timer',
     spec: 'test/spec',
 
+    common: 'modules/common',
     test_app: 'test/test-app',
     app: 'modules/app',
     gametable: 'modules/gametable',

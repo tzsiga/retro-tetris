@@ -4,6 +4,12 @@ define(['square'], function(Square) {
     this.squares = new Array();
 
     this.init = function(posX, posY, type) {
+      if (typeof posX === 'undefined')
+        posX = (AREA_WIDTH / 2) - 1;
+
+      if (typeof posY === 'undefined')
+        posY = 0;
+
       switch (type) {
         case 1:
           this.addType1(posX, posY);

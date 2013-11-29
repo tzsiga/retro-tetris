@@ -1,4 +1,4 @@
-define(['jquery', 'jquery_timer', 'gametable', 'block'], function($, jquery_timer, GameTable, Block) {
+define(['jquery', 'jquery_timer', 'gametable', 'block', 'common'], function($, jquery_timer, GameTable, Block) {
 
   $(document).ready(function() {
     var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
@@ -29,7 +29,7 @@ define(['jquery', 'jquery_timer', 'gametable', 'block'], function($, jquery_time
       // check full rows and elinimate them
 
       if (!gt.getFallingBlock().moveDown() && gt.blocks.length < 10) {
-        gt.addBlock(new Block(4,0));
+        gt.addBlock(new Block());
       }
 
       gt.redraw();
