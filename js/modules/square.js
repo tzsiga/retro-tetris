@@ -46,5 +46,10 @@ define(['jquery'], function($) {
     this.x += 1;
   }
 
+  Square.prototype.set = function(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
   return Square;
 });

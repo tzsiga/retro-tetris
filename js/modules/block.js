@@ -86,7 +86,7 @@ define(['square'], function(Square) {
       this.squares.push(new Square(posX + 1, posY + 2, 'gray'));
     }
 
-    this.getEdges = function() {
+    this.edges = function() {
       var leftEdge = AREA_WIDTH;
       var rightEdge = 0;
       var topEdge = AREA_HEIGHT;
@@ -107,11 +107,11 @@ define(['square'], function(Square) {
     }
 
     this.getWidth = function() {
-      return this.getEdges().right - this.getEdges().left + 1;
+      return this.edges().right - this.edges().left + 1;
     }
 
     this.getHeight = function() {
-      return this.getEdges().bottom - this.getEdges().top + 1;
+      return this.edges().bottom - this.edges().top + 1;
     }
 
     this.numOfMovableSquaresDown = function() {
@@ -168,6 +168,52 @@ define(['square'], function(Square) {
     return this.init(posX, posY, type);
   }
 
+  Block.prototype.rotationPoint = function() {
+    return { x: this.squares[0].x, y: this.squares[0].y };
+  }
+
+  Block.prototype.rotationMatrix = function() {
+    return [ [ 0, 1 ], [ -1, 0 ]];
+  }
+
+  Block.prototype.offsetMatrix = function() {
+    var b = this;
+    var matrix = new Array();
+    
+    this.squares.forEach(function(s) {
+      matrix.push([ s.x - b.rotationPoint().x, s.y - b.rotationPoint().y ]);
+    });
+
+    return matrix;
+  }
+
+  Block.prototype.multiply = function(rotation, vector) {
+    return new Array(
+      rotation[0][0] * vector[0] + rotation[1][0] * vector[1],
+      rotation[0][1] * vector[0] + rotation[1][1] * vector[1]
+    );
+  }
+
+  Block.prototype.rotateOffsetMatrix = function() {
+    var b = this;
+    var rot = new Array();
+
+    for (var i = 0; i < this.offsetMatrix().length; i++) {
+      rot.push(b.multiply(b.rotationMatrix(), this.offsetMatrix()[i]));
+    }
+
+    return rot;
+  }
+
+  Block.prototype.moveSquares = function(matrix) {
+    var b = this;
+    var i = 0;
+    this.squares.forEach(function(s) {
+      s.set(b.rotationPoint().x + matrix[i][0], b.rotationPoint().y + matrix[i][1]);
+      i++;
+    });
+  }
+
   Block.prototype.drawSquares = function() {
     this.squares.forEach(function(s) {
       s.draw();
@@ -202,6 +248,7 @@ define(['square'], function(Square) {
 
   // todo
   Block.prototype.rotateLeft = function() {
+    this.moveSquares(this.rotateOffsetMatrix());
   }
 
   // todo
