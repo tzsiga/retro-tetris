@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"r",
+				"right"
+			],
+			[
+				"l",
+				"left"
+			],
+			[
+				"off",
+				"offsetMatrix"
+			],
+			[
+				"ro",
+				"rotationPoint"
+			],
+			[
+				"g",
+				"getFallingBlock"
+			],
+			[
+				"p",
+				"push"
+			],
+			[
+				"A",
+				"AREA_HEIGHT"
+			],
+			[
+				"to",
+				"toBeLessThan"
+			],
+			[
+				"for",
+				"foreach"
+			],
+			[
+				"po",
+				"posX"
+			],
+			[
+				"pos",
+				"posY"
+			],
+			[
+				"ps",
+				"posX"
+			],
+			[
+				"ja",
+				"jasmine"
+			],
+			[
+				"j",
+				"jasmine-html-1"
+			],
+			[
 				"mo",
 				"moveDown"
 			],
@@ -14,14 +70,6 @@
 			[
 				"bo",
 				"bottom"
-			],
-			[
-				"po",
-				"posY"
-			],
-			[
-				"p",
-				"posX"
 			],
 			[
 				"can",
@@ -44,24 +92,12 @@
 				"function"
 			],
 			[
-				"r",
-				"rightEdge"
-			],
-			[
 				"squ",
 				"Square"
 			],
 			[
 				"col",
 				"cols"
-			],
-			[
-				"l",
-				"leftEdge"
-			],
-			[
-				"A",
-				"AREA_WIDTH"
 			],
 			[
 				"co",
@@ -128,10 +164,6 @@
 				"AREA_WIDTH"
 			],
 			[
-				"for",
-				"for	for (…) {…}"
-			],
-			[
 				"rem",
 				"removePiece"
 			],
@@ -147,6 +179,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "js/modules/app.js",
+			"settings":
+			{
+				"buffer_size": 1180,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/modules/block.js",
+			"settings":
+			{
+				"buffer_size": 7002,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/modules/square.js",
+			"settings":
+			{
+				"buffer_size": 1248,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -155,8 +211,24 @@
 		"selected_items":
 		[
 			[
+				"spa",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"con sp",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"conv ta",
+				"Indentation: Convert to Tabs"
+			],
+			[
 				"rei",
 				"Indentation: Reindent Lines"
+			],
+			[
+				"fold",
+				"Code Folding: Unfold All"
 			],
 			[
 				"space",
@@ -191,15 +263,32 @@
 	},
 	"file_history":
 	[
-		"/D/userdata/taroczyt/Desktop/dep",
-		"/D/workspace/etc/tetris.js/js/modules/block.js",
-		"/D/workspace/etc/tetris.js/index.html",
-		"/D/workspace/etc/tetris.js/js/modules/gametable.js",
 		"/D/workspace/etc/tetris.js/js/modules/app.js",
-		"/D/workspace/etc/tetris.js/js/lib/jquery-1.10.2.min.js",
+		"/D/workspace/etc/tetris.js/js/modules/common.js",
+		"/D/workspace/etc/tetris.js/tetris_js.sublime-project",
 		"/D/workspace/etc/tetris.js/js/modules/square.js",
-		"/D/userdata/taroczyt/Desktop/proxy.txt",
+		"/D/workspace/etc/tetris.js/js/modules/block.js",
+		"/D/workspace/etc/tetris.js/js/test/spec/block-spec.js",
+		"/D/workspace/etc/tetris.js/js/test/test-app.js",
+		"/D/workspace/etc/tetris.js/js/config-test.js",
 		"/D/workspace/etc/tetris.js/js/config.js",
+		"/D/workspace/etc/tetris.js/js/modules/gametable.js",
+		"/D/workspace/etc/tetris.js/index.html",
+		"/D/workspace/etc/tetris.js/js/test/runner.html",
+		"/D/userdata/taroczyt/Desktop/NSN account info.txt",
+		"/D/workspace/etc/tetris.js/js/test/spec/PlayerSpec.js",
+		"/D/userdata/taroczyt/Desktop/jasmine-standalone-1.3.0/SpecRunner.html",
+		"/D/userdata/taroczyt/Desktop/loading.js",
+		"/D/workspace/etc/tetris.js/js/lib/jasmine-1.3.0.js",
+		"/D/workspace/etc/tetris.js/js/lib/jasmine-html-1.3.0.js",
+		"/D/workspace/etc/tetris.js/css/base.css",
+		"/D/userdata/taroczyt/Desktop/jasmine-standalone-1.3.0/lib/jasmine-1.3.0/jasmine.css",
+		"/D/workspace/etc/tetris.js/js/test/SpecRunner.html",
+		"/D/userdata/taroczyt/Desktop/jasmine-standalone-1.3.0/spec/PlayerSpec.js",
+		"/C/Users/taroczyt/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/T1GUGCOC/proxy.pac",
+		"/D/userdata/taroczyt/Desktop/dep",
+		"/D/workspace/etc/tetris.js/js/lib/jquery-1.10.2.min.js",
+		"/D/userdata/taroczyt/Desktop/proxy.txt",
 		"/D/userdata/taroczyt/Desktop/trunk/Tools and Processes tutorial.md",
 		"/D/workspace/etc/tetris.js/js/modules/debug.js",
 		"/D/workspace/etc/tetris.js/js/common.js",
@@ -225,7 +314,7 @@
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -240,6 +329,41 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"rotationMatrix",
+			"matrix",
+			"rotatedMatrix",
+			"rotateOffsetMatrix",
+			"getEdges",
+			"getEnv",
+			"s.row",
+			"row",
+			"s.",
+			"row",
+			"column",
+			"isReservedCell",
+			"type",
+			"clear",
+			"drawBlocks",
+			"canMoveRight",
+			"Block.prototype",
+			"moveLeft",
+			"addType2",
+			"Block.prototype",
+			"canMoveLeft",
+			"canMoveDown",
+			"Block.prototype",
+			"numOfMovableSquaresRight",
+			"numOfMovableSquaresLeft",
+			"numOfMovableSquaresDown",
+			"numOfMovableSquaresRight",
+			"getWidth",
+			"getEdges",
+			"drawSquares",
+			"canMoveDown",
+			"isReservedCell",
+			"draw",
+			"isReservedCell",
+			"canMoveRight",
 			"isReservedCell",
 			"na",
 			"numOfMovableSquares",
@@ -268,6 +392,14 @@
 		"regex": false,
 		"replace_history":
 		[
+			"rotatedOffset",
+			"rotateMatrix",
+			"rotatedMatrix",
+			"edges",
+			"s.y",
+			"y",
+			"x",
+			"this",
 			"numOfMovableSquaresDown",
 			"gray",
 			"posY",
@@ -290,14 +422,105 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "js/modules/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/modules/block.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7002,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5069,
+								5069
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1107.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/modules/square.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1248,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1080,
+								1080
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 34.0
 	},
 	"input":
 	{

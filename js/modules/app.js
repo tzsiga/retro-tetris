@@ -18,7 +18,9 @@ define(['jquery', 'jquery_timer', 'gametable', 'block', 'common'], function($, j
         gt.getFallingBlock().rotateLeft();
       } else if (e.keyCode == 40) { // down
         e.preventDefault();
-        //gt.getFallingBlock().rotateRight();
+        gt.getFallingBlock().rotateRight();
+      } else if (e.keyCode == 32) { // space
+        e.preventDefault();
         gt.getFallingBlock().moveDown();
       }
 

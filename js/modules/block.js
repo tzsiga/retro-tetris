@@ -39,8 +39,8 @@ define(['square'], function(Square) {
 
     this.addType1 = function(posX, posY) {
       this.squares.push(new Square(posX, posY, 'green'));
-      this.squares.push(new Square(posX + 1, posY + 1, 'green'));
       this.squares.push(new Square(posX, posY + 1, 'green'));
+      this.squares.push(new Square(posX + 1, posY + 1, 'green'));
       this.squares.push(new Square(posX, posY + 2, 'green'));
     }
 
@@ -168,12 +168,13 @@ define(['square'], function(Square) {
     return this.init(posX, posY, type);
   }
 
+  // privates -->| draw
   Block.prototype.rotationPoint = function() {
-    return { x: this.squares[0].x, y: this.squares[0].y };
+    return { x: this.squares[1].x, y: this.squares[1].y };
   }
 
   Block.prototype.rotationMatrix = function() {
-    return [ [ 0, 1 ], [ -1, 0 ]];
+    return { right: [[0, 1], [-1, 0]] , left: [[0, -1], [1, 0]] };
   }
 
   Block.prototype.offsetMatrix = function() {
@@ -181,37 +182,27 @@ define(['square'], function(Square) {
     var matrix = new Array();
     
     this.squares.forEach(function(s) {
-      matrix.push([ s.x - b.rotationPoint().x, s.y - b.rotationPoint().y ]);
+      matrix.push([s.x - b.rotationPoint().x, s.y - b.rotationPoint().y]);
     });
 
     return matrix;
   }
 
   Block.prototype.multiply = function(rotation, vector) {
-    return new Array(
-      rotation[0][0] * vector[0] + rotation[1][0] * vector[1],
-      rotation[0][1] * vector[0] + rotation[1][1] * vector[1]
-    );
+    return {
+      x: rotation[0][0] * vector[0] + rotation[1][0] * vector[1],
+      y: rotation[0][1] * vector[0] + rotation[1][1] * vector[1]
+    };
   }
 
-  Block.prototype.rotateOffsetMatrix = function() {
-    var b = this;
+  Block.prototype.matrixMultiply = function(rotation, offset) {
     var rot = new Array();
 
-    for (var i = 0; i < this.offsetMatrix().length; i++) {
-      rot.push(b.multiply(b.rotationMatrix(), this.offsetMatrix()[i]));
+    for (var i = 0; i < offset.length; i++) {
+      rot.push(this.multiply(rotation, offset[i]));
     }
 
     return rot;
-  }
-
-  Block.prototype.moveSquares = function(matrix) {
-    var b = this;
-    var i = 0;
-    this.squares.forEach(function(s) {
-      s.set(b.rotationPoint().x + matrix[i][0], b.rotationPoint().y + matrix[i][1]);
-      i++;
-    });
   }
 
   Block.prototype.drawSquares = function() {
@@ -247,12 +238,32 @@ define(['square'], function(Square) {
   }
 
   // todo
-  Block.prototype.rotateLeft = function() {
-    this.moveSquares(this.rotateOffsetMatrix());
+  Block.prototype.canRotate = function(rotatedOffset) {
+    // a rotatedOffset-ben lévő relatív koordinátákat kell összehasonlítani
+    // azzal, hogy hol van most a blokk
+
+    return true;
   }
 
-  // todo
+  Block.prototype.rotate = function(rotationMatrix) {
+    var rotatedOffset = this.matrixMultiply(rotationMatrix, this.offsetMatrix());
+
+    if (this.canRotate(rotatedOffset)) {
+      var rotationPoint = this.rotationPoint();
+      var i = 0;
+      this.squares.forEach(function(s) {
+        s.set(rotationPoint.x + rotatedOffset[i].x, rotationPoint.y + rotatedOffset[i].y);
+        i++;
+      });
+    }
+  }
+
+  Block.prototype.rotateLeft = function() {
+    this.rotate(this.rotationMatrix().left);
+  }
+
   Block.prototype.rotateRight = function() {
+    this.rotate(this.rotationMatrix().right);
   }
 
   return Block;
