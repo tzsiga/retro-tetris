@@ -33,9 +33,10 @@ define(['jquery', 'block'], function($, Block) {
 
     this.drawBlocks = function() {
       var gt = this;
-      gt.blocks.forEach(function(b) {
-        b.drawSquares();
-      });
+      
+      for (var i = this.blocks.length - 1; i >= 0; i--) {
+        this.blocks[i].drawSquares();
+      }
     }
 
     this.init();

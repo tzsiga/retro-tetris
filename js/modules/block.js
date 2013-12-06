@@ -92,16 +92,16 @@ define(['square'], function(Square) {
       var topEdge = AREA_HEIGHT;
       var bottomEdge = 0;
 
-      this.squares.forEach(function(s) {
-        if (s.x < leftEdge)
-          leftEdge = s.x;
-        if (s.x > rightEdge)
-          rightEdge = s.x;
-        if (s.y < topEdge)
-          topEdge = s.y;
-        if (s.y > bottomEdge)
-          bottomEdge = s.y;
-      });
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        if (this.squares[i].x < leftEdge)
+          leftEdge = this.squares[i].x;
+        if (this.squares[i].x > rightEdge)
+          rightEdge = this.squares[i].x;
+        if (this.squares[i].y < topEdge)
+          topEdge = this.squares[i].y;
+        if (this.squares[i].y > bottomEdge)
+          bottomEdge = this.squares[i].y;
+      };
 
       return { left: leftEdge, right: rightEdge, top: topEdge, bottom: bottomEdge };
     }
@@ -117,10 +117,10 @@ define(['square'], function(Square) {
     this.numOfMovableSquaresDown = function() {
       var n = 0;
 
-      this.squares.forEach(function(s) {
-        if (s.canMoveDown())
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        if (this.squares[i].canMoveDown())
           n++;
-      });
+      }
 
       return n;
     }
@@ -128,10 +128,10 @@ define(['square'], function(Square) {
     this.numOfMovableSquaresLeft = function() {
       var n = 0;
 
-      this.squares.forEach(function(s) {
-        if (s.canMoveLeft())
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        if (this.squares[i].canMoveLeft())
           n++;
-      });
+      }
 
       return n;
     }
@@ -139,10 +139,10 @@ define(['square'], function(Square) {
     this.numOfMovableSquaresRight = function() {
       var n = 0;
 
-      this.squares.forEach(function(s) {
-        if (s.canMoveRight())
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        if (this.squares[i].canMoveRight())
           n++;
-      });
+      }
 
       return n;
     }
@@ -177,9 +177,9 @@ define(['square'], function(Square) {
       var rotationPoint = this.rotationPoint();
       var matrix = new Array();
       
-      this.squares.forEach(function(s) {
-        matrix.push([s.x - rotationPoint.x, s.y - rotationPoint.y]);
-      });
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        matrix.push([this.squares[i].x - rotationPoint.x, this.squares[i].y - rotationPoint.y]);
+      }
 
       return matrix;
     }
@@ -202,19 +202,15 @@ define(['square'], function(Square) {
     }
 
     this.canRotate = function(rotatedOffset) {
-      var canRotate = true;
       var rotationPoint = this.rotationPoint();
-      var i = 0;
 
-      this.squares.forEach(function(s) {
+      for (var i = 0; i < rotatedOffset.length - 1; i++) {
         if (rotationPoint.x + rotatedOffset[i].x < 0 || rotationPoint.x + rotatedOffset[i].x >= AREA_WIDTH) {
-          canRotate = false;
+          return false;
         }
+      }
 
-        i++;
-      });
-
-      return canRotate;
+      return true;
     }
 
     this.rotate = function(rotationMatrix) {
@@ -222,12 +218,10 @@ define(['square'], function(Square) {
 
       if (this.canRotate(rotatedOffset)) {
         var rotationPoint = this.rotationPoint();
-        var i = 0;
 
-        this.squares.forEach(function(s) {
-          s.set(rotationPoint.x + rotatedOffset[i].x, rotationPoint.y + rotatedOffset[i].y);
-          i++;
-        });
+        for (var i = this.squares.length - 1; i >= 0; i--) {
+          this.squares[i].set(rotationPoint.x + rotatedOffset[i].x, rotationPoint.y + rotatedOffset[i].y);
+        };
       }
     }
 
@@ -235,35 +229,39 @@ define(['square'], function(Square) {
   }
 
   Block.prototype.drawSquares = function() {
-    this.squares.forEach(function(s) {
-      s.draw();
-    });
+    for (var i = this.squares.length - 1; i >= 0; i--) {
+      this.squares[i].draw();
+    };
   }
 
   Block.prototype.moveDown = function() {
     if (this.canMoveDown()) {
-      this.squares.forEach(function(s) {
-        s.moveDown();
-      });
-      return true;
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        this.squares[i].moveDown();
+      }
     }
-    return false;
+
+    return this.canMoveDown();
   }
 
   Block.prototype.moveLeft = function() {
     if (this.canMoveLeft()) {
-      this.squares.forEach(function(s) {
-        s.moveLeft();
-      });
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        this.squares[i].moveLeft();
+      }
     }
+
+    return this.canMoveLeft();
   }
 
   Block.prototype.moveRight = function() {
     if (this.canMoveRight()) {
-      this.squares.forEach(function(s) {
-        s.moveRight();
-      });
+      for (var i = this.squares.length - 1; i >= 0; i--) {
+        this.squares[i].moveRight();
+      }
     }
+
+    return this.canMoveRight();
   }
 
   Block.prototype.rotateLeft = function() {
