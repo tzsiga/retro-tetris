@@ -4,32 +4,84 @@
 		"selected_items":
 		[
 			[
+				"ro",
+				"rowNumber"
+			],
+			[
+				"p",
+				"proto	Prototype"
+			],
+			[
+				"prot",
+				"prototype"
+			],
+			[
+				"sq",
+				"squares"
+			],
+			[
+				"re",
+				"reservedRow"
+			],
+			[
+				"cl",
+				"clearCell"
+			],
+			[
 				"r",
-				"right"
+				"rowNumbers"
+			],
+			[
+				"row",
+				"rowNumbers"
+			],
+			[
+				"game",
+				"GameTable"
+			],
+			[
+				"squ",
+				"square"
+			],
+			[
+				"pr",
+				"proto	Prototype"
+			],
+			[
+				"c",
+				"canMoveRight"
+			],
+			[
+				"can",
+				"canMoveLeft"
+			],
+			[
+				"mo",
+				"moveRight"
+			],
+			[
+				"ca",
+				"canMoveLeft"
 			],
 			[
 				"l",
-				"left"
+				"length"
+			],
+			[
+				"A",
+				"AREA_WIDTH"
+			],
+			[
+				"roa",
+				"rotatedOffset"
 			],
 			[
 				"off",
 				"offsetMatrix"
 			],
 			[
-				"ro",
-				"rotationPoint"
-			],
-			[
 				"g",
 				"getFallingBlock"
-			],
-			[
-				"p",
-				"push"
-			],
-			[
-				"A",
-				"AREA_HEIGHT"
 			],
 			[
 				"to",
@@ -60,10 +112,6 @@
 				"jasmine-html-1"
 			],
 			[
-				"mo",
-				"moveDown"
-			],
-			[
 				"mov",
 				"moveLeft"
 			],
@@ -72,28 +120,8 @@
 				"bottom"
 			],
 			[
-				"can",
-				"canMoveDown"
-			],
-			[
-				"pr",
-				"prototype"
-			],
-			[
-				"re",
-				"redraw"
-			],
-			[
-				"c",
-				"condition"
-			],
-			[
 				"fun",
 				"function"
-			],
-			[
-				"squ",
-				"Square"
 			],
 			[
 				"col",
@@ -140,10 +168,6 @@
 				"piece"
 			],
 			[
-				"cl",
-				"column"
-			],
-			[
 				"m",
 				"movePieceDown"
 			],
@@ -183,7 +207,15 @@
 			"file": "js/modules/app.js",
 			"settings":
 			{
-				"buffer_size": 1180,
+				"buffer_size": 1195,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/modules/gametable.js",
+			"settings":
+			{
+				"buffer_size": 2373,
 				"line_ending": "Windows"
 			}
 		},
@@ -191,7 +223,7 @@
 			"file": "js/modules/block.js",
 			"settings":
 			{
-				"buffer_size": 7002,
+				"buffer_size": 8319,
 				"line_ending": "Windows"
 			}
 		},
@@ -199,7 +231,7 @@
 			"file": "js/modules/square.js",
 			"settings":
 			{
-				"buffer_size": 1248,
+				"buffer_size": 1348,
 				"line_ending": "Windows"
 			}
 		}
@@ -207,9 +239,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 60.0,
 		"selected_items":
 		[
+			[
+				"open",
+				"View: Toggle Open Files in Side Bar"
+			],
 			[
 				"spa",
 				"Indentation: Convert to Spaces"
@@ -263,17 +299,24 @@
 	},
 	"file_history":
 	[
-		"/D/workspace/etc/tetris.js/js/modules/app.js",
+		"/D/workspace/etc/tetris.js/index.html",
 		"/D/workspace/etc/tetris.js/js/modules/common.js",
-		"/D/workspace/etc/tetris.js/tetris_js.sublime-project",
+		"/D/workspace/etc/tetris.js/js/modules/gametable.js",
 		"/D/workspace/etc/tetris.js/js/modules/square.js",
+		"/D/workspace/etc/tetris.js/js/modules/app.js",
+		"/D/userdata/taroczyt/Desktop/RulesUiTest.java",
+		"/D/userdata/taroczyt/Desktop/trunk/Tools and Processes tutorial.md",
+		"/C/CCaseViews/taroczyt_main_sview/ntmsvob/andsf/robin/server/build/subsgroupmanwebservice/wsgen/com/nsn/andsf/robin/webservice/subscribergroupmanagement/jaxws/GetAllSubscriberGroups.java",
+		"/D/userdata/taroczyt/Desktop/trunk/proxy.txt",
+		"/D/userdata/taroczyt/Desktop/trunk/NSN account info.txt",
+		"/D/userdata/taroczyt/Desktop/bookings.txt",
+		"/D/userdata/taroczyt/Desktop/bookings.sql",
+		"/D/workspace/etc/tetris.js/tetris_js.sublime-project",
 		"/D/workspace/etc/tetris.js/js/modules/block.js",
 		"/D/workspace/etc/tetris.js/js/test/spec/block-spec.js",
 		"/D/workspace/etc/tetris.js/js/test/test-app.js",
 		"/D/workspace/etc/tetris.js/js/config-test.js",
 		"/D/workspace/etc/tetris.js/js/config.js",
-		"/D/workspace/etc/tetris.js/js/modules/gametable.js",
-		"/D/workspace/etc/tetris.js/index.html",
 		"/D/workspace/etc/tetris.js/js/test/runner.html",
 		"/D/userdata/taroczyt/Desktop/NSN account info.txt",
 		"/D/workspace/etc/tetris.js/js/test/spec/PlayerSpec.js",
@@ -289,7 +332,6 @@
 		"/D/userdata/taroczyt/Desktop/dep",
 		"/D/workspace/etc/tetris.js/js/lib/jquery-1.10.2.min.js",
 		"/D/userdata/taroczyt/Desktop/proxy.txt",
-		"/D/userdata/taroczyt/Desktop/trunk/Tools and Processes tutorial.md",
 		"/D/workspace/etc/tetris.js/js/modules/debug.js",
 		"/D/workspace/etc/tetris.js/js/common.js",
 		"/D/workspace/etc/tetris.js/js/modules/main.js",
@@ -329,6 +371,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			");\n",
+			"console",
+			"split",
+			"clearOneRow",
+			"isReservedCell",
+			"console",
+			"console.",
+			"this.color",
+			"this.x",
+			"this.y",
+			"getHeight",
+			"getWidth",
+			"foreach",
+			"s",
+			"foreach",
+			"}\n",
+			"Block.prototype",
+			"= this",
+			"),",
+			"local",
+			"rotateMatrix",
 			"rotationMatrix",
 			"matrix",
 			"rotatedMatrix",
@@ -392,6 +455,15 @@
 		"regex": false,
 		"replace_history":
 		[
+			"clearRow",
+			"color",
+			"x",
+			"y",
+			"this.squares[i]",
+			"this",
+			"",
+			"vectorMultiply",
+			"matrixMultiply",
 			"rotatedOffset",
 			"rotateMatrix",
 			"rotatedMatrix",
@@ -422,7 +494,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -431,15 +503,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1180,
+						"buffer_size": 1195,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1089,
+								1089
 							]
 						],
 						"settings":
@@ -449,57 +521,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/modules/block.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7002,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5069,
-								5069
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1107.0,
+						"translation.y": 51.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "js/modules/square.js",
+					"buffer": 1,
+					"file": "js/modules/gametable.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1248,
+						"buffer_size": 2373,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1080,
-								1080
+								1118,
+								1118
 							]
 						],
 						"settings":
@@ -509,10 +551,70 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 240.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/modules/block.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8319,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8280,
+								8280
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4131.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/modules/square.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1348,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1347,
+								1347
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -553,10 +655,14 @@
 	{
 		"height": 0.0
 	},
+	"output.unsaved_changes":
+	{
+		"height": 370.0
+	},
 	"project": "tetris_js.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 94.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -587,7 +693,7 @@
 	{
 	},
 	"show_minimap": true,
-	"show_open_files": true,
+	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 199.0,

@@ -1,5 +1,9 @@
+body {
+	background-color: #272822;
+}
+
 table#game_area {
-  border: 1px solid black;
+  border: 2px solid #F8F8F2;
   margin: 50px auto;
 }
 
