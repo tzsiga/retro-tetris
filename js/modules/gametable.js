@@ -75,28 +75,26 @@ define(["jquery", "block"], function($, Block) {
       }
     }
 
-    // todo
+    this.shiftDownBlockAboveRow = function(block, row) {
+      for (var i = block.squares.length - 1; i >= 0; i--) {
+        if (block.squares[i].y == row - 1)
+          block.squares[i].moveDown();
+      }
+    }
+
+    this.fillRow = function(emptyRow) {
+      for (var row = emptyRow; row >= 0; row--) {
+        for (var i = this.blocks.length - 1; i >= 0; i--) {
+          this.shiftDownBlockAboveRow(this.blocks[i], row);
+        }
+      }
+    }
+
     this.shrink = function(emptyRows) {
       emptyRows.sort();
 
-      // check empty rows
       for (var i = emptyRows.length - 1; i >= 0; i--) {
-        var row = emptyRows[i];
-
-        // for all row above
-        for (var r = row; r >= 0; r--) {
-
-          // check blocks
-          for (var j = this.blocks.length - 1; j >= 0; j--) {
-            var b = this.blocks[j];
-
-            for (var k = b.squares.length - 1; k >= 0; k--) {
-
-              if (b.squares[k].y == r - 1)
-                b.squares[k].moveDown();
-            }
-          }
-        }
+        this.fillRow(emptyRows[i]);
       }
     }
 

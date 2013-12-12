@@ -28,8 +28,8 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
           e.preventDefault();
           gt.getFallingBlock().moveDown();
     
-          //if (!gt.getFallingBlock().canMoveDown())
-          //  gt.clearFullRows();
+          if (!gt.getFallingBlock().canMoveDown())
+            gt.clearFullRows();
 
           break;
       }
@@ -38,9 +38,9 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
     });
 
     var timer = $.timer(function() {
-      if (gt.getFallingBlock().canMoveDown()) {
-        gt.getFallingBlock().moveDown();
-      } else {
+      gt.getFallingBlock().moveDown();
+
+      if (!gt.getFallingBlock().canMoveDown()) {
         gt.clearFullRows();
 
         if (gt.blocks.length < 12) {
