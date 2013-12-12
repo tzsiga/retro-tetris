@@ -79,8 +79,24 @@ define(["jquery", "block"], function($, Block) {
     this.shrink = function(emptyRows) {
       emptyRows.sort();
 
+      // check empty rows
       for (var i = emptyRows.length - 1; i >= 0; i--) {
-        emptyRows[i];
+        var row = emptyRows[i];
+
+        // for all row above
+        for (var r = row; r >= 0; r--) {
+
+          // check blocks
+          for (var j = this.blocks.length - 1; j >= 0; j--) {
+            var b = this.blocks[j];
+
+            for (var k = b.squares.length - 1; k >= 0; k--) {
+
+              if (b.squares[k].y == r - 1)
+                b.squares[k].moveDown();
+            }
+          }
+        }
       }
     }
 

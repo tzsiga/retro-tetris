@@ -28,8 +28,8 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
           e.preventDefault();
           gt.getFallingBlock().moveDown();
     
-          if (!gt.getFallingBlock().canMoveDown())
-            gt.clearFullRows();
+          //if (!gt.getFallingBlock().canMoveDown())
+          //  gt.clearFullRows();
 
           break;
       }
