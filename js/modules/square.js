@@ -1,8 +1,8 @@
 define(["jquery"], function($) {
 
   function Square(x, y, color) {
-    this.x = x;
-    this.y = y;
+    this.x = (typeof x !== "undefined") ? x : 0;
+    this.y = (typeof y !== "undefined") ? y : 0;
     this.color = (typeof color !== "undefined") ? color : PIECE_COLOR;
 
     this.neighbours = function() {

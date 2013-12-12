@@ -14,6 +14,7 @@ define(["jasmine-html", "common"], function(jasmine) {
 
     var specs = new Array();
     specs.push("spec/block-spec");
+    specs.push("spec/square-spec");
 
     require(specs, function() {
       jasmineEnv.execute();
