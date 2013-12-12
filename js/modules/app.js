@@ -1,12 +1,12 @@
-define(['jquery', 'jquery_timer', 'gametable', 'block', 'common'], function($, jquery_timer, GameTable, Block) {
+define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, jquery_timer, GameTable, Block) {
 
   $(document).ready(function() {
     var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
     
-    $('body').append(gt.table);
+    $("body").append(gt.table);
     gt.redraw();
 
-    $('body').keydown(function(e) {
+    $("body").keydown(function(e) {
       switch(e.keyCode) {
         case 37: // left
           e.preventDefault();
@@ -30,7 +30,7 @@ define(['jquery', 'jquery_timer', 'gametable', 'block', 'common'], function($, j
     
           if (!gt.getFallingBlock().canMoveDown())
             gt.clearFullRows();
-          
+
           break;
       }
 
@@ -38,9 +38,9 @@ define(['jquery', 'jquery_timer', 'gametable', 'block', 'common'], function($, j
     });
 
     var timer = $.timer(function() {
-      gt.getFallingBlock().moveDown();
-
-      if (!gt.getFallingBlock().canMoveDown()) {
+      if (gt.getFallingBlock().canMoveDown()) {
+        gt.getFallingBlock().moveDown();
+      } else {
         gt.clearFullRows();
 
         if (gt.blocks.length < 12) {

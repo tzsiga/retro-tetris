@@ -1,16 +1,16 @@
-define(['square'], function(Square) {
+define(["square"], function(Square) {
 
   function Block(posX, posY, type) {
     this.squares = new Array();
 
     this.init = function(posX, posY, type) {
-      if (typeof posX === 'undefined')
+      if (typeof posX === "undefined")
         posX = (AREA_WIDTH / 2) - 1;
 
-      if (typeof posY === 'undefined')
+      if (typeof posY === "undefined")
         posY = 0;
 
-      if (typeof type === 'undefined')
+      if (typeof type === "undefined")
         //type = 1;
         type = Math.floor((Math.random() * 7) + 1);
 
@@ -40,7 +40,7 @@ define(['square'], function(Square) {
     }
 
     this.addType1 = function(posX, posY) {
-      var color = '#A6E22E';
+      var color = "#A6E22E";
       this.squares.push(new Square(posX, posY, color));
       this.squares.push(new Square(posX, posY + 1, color));
       this.squares.push(new Square(posX + 1, posY + 1, color));
@@ -48,7 +48,7 @@ define(['square'], function(Square) {
     }
 
     this.addType2 = function(posX, posY) {
-      var color = '#F92672';
+      var color = "#F92672";
       this.squares.push(new Square(posX, posY, color));
       this.squares.push(new Square(posX, posY + 1, color));
       this.squares.push(new Square(posX + 1, posY, color));
@@ -56,7 +56,7 @@ define(['square'], function(Square) {
     }
 
     this.addType3 = function(posX, posY) {
-      var color = '#66D9EF';
+      var color = "#66D9EF";
       this.squares.push(new Square(posX, posY, color));
       this.squares.push(new Square(posX, posY + 1, color));
       this.squares.push(new Square(posX, posY + 2, color));
@@ -64,7 +64,7 @@ define(['square'], function(Square) {
     }
 
     this.addType4 = function(posX, posY) {
-      var color = '#FD971F';
+      var color = "#FD971F";
       this.squares.push(new Square(posX, posY, color));
       this.squares.push(new Square(posX + 1, posY, color));
       this.squares.push(new Square(posX + 1, posY + 1, color));
@@ -72,7 +72,7 @@ define(['square'], function(Square) {
     }
 
     this.addType5 = function(posX, posY) {
-      var color = '#FD971F';
+      var color = "#FD971F";
       this.squares.push(new Square(posX, posY + 1, color));
       this.squares.push(new Square(posX + 1, posY + 1, color));
       this.squares.push(new Square(posX + 1, posY, color));
@@ -80,7 +80,7 @@ define(['square'], function(Square) {
     }
 
     this.addType6 = function(posX, posY) {
-      var color = '#E6DB74';
+      var color = "#E6DB74";
       this.squares.push(new Square(posX + 1, posY, color));
       this.squares.push(new Square(posX + 1, posY + 1, color));
       this.squares.push(new Square(posX + 1, posY + 2, color));
@@ -88,7 +88,7 @@ define(['square'], function(Square) {
     }
 
     this.addType7 = function(posX, posY) {
-      var color = '#E6DB74';
+      var color = "#E6DB74";
       this.squares.push(new Square(posX, posY, color));
       this.squares.push(new Square(posX, posY + 1, color));
       this.squares.push(new Square(posX, posY + 2, color));

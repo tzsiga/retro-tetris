@@ -1,4 +1,4 @@
-define(['jquery', 'block'], function($, Block) {
+define(["jquery", "block"], function($, Block) {
 
   function GameTable(height, width) {
     this.height = height;
@@ -6,13 +6,13 @@ define(['jquery', 'block'], function($, Block) {
     this.blocks = new Array();
 
     this.init = function() {
-      this.table = $(document.createElement('table')).attr('id', 'game_area');
+      this.table = $(document.createElement("table")).attr("id", "game_area");
 
       for (var i = 0; i < height; i++) {
-        var new_row = $(document.createElement('tr')).attr('class', i);
+        var new_row = $(document.createElement("tr")).attr("class", i);
 
         for (var j = 0; j < width; j++) {
-          $(new_row).append($(document.createElement('td')).attr('class', j));
+          $(new_row).append($(document.createElement("td")).attr("class", j));
         }
 
         $(this.table).append(new_row);
@@ -26,13 +26,13 @@ define(['jquery', 'block'], function($, Block) {
     }
 
     this.clear = function() {
-      $(this.table).find('td').each(function(id, cell) {
-        $(cell).css('background-color', DEFAULT_COLOR).text('');
+      $(this.table).find("td").each(function(id, cell) {
+        $(cell).css("background-color", BG_COLOR).text("");
       });
     }
 
     this.isReservedCell = function(x, y) {
-      if ($('tr.' + y + ' td.' + x).text() === RESERVED)
+      if ($("tr." + y + " td." + x).text() === RESERVED)
         return true;
       return false;
     }
@@ -75,6 +75,15 @@ define(['jquery', 'block'], function($, Block) {
       }
     }
 
+    // todo
+    this.shrink = function(emptyRows) {
+      emptyRows.sort();
+
+      for (var i = emptyRows.length - 1; i >= 0; i--) {
+        emptyRows[i];
+      }
+    }
+
     this.init();
   }
 
@@ -88,8 +97,10 @@ define(['jquery', 'block'], function($, Block) {
   }
 
   GameTable.prototype.clearFullRows = function() {
-    this.clearRows(this.getFullRows());
-    //this.shrink();
+    var fullRows = this.getFullRows();
+
+    this.clearRows(fullRows);
+    this.shrink(fullRows);
   }
 
   return GameTable;

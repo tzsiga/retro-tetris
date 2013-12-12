@@ -1,21 +1,21 @@
-define(['jquery'], function($) {
+define(["jquery"], function($) {
 
   function Square(x, y, color) {
     this.x = x;
     this.y = y;
-    this.color = (typeof color !== 'undefined') ? color : PIECE_COLOR;
+    this.color = (typeof color !== "undefined") ? color : PIECE_COLOR;
 
     this.neighbours = function() {
       return {
-        left: $('tr.' + this.y + ' td.' + (this.x - 1)).text(),
-        right: $('tr.' + this.y + ' td.' + (this.x + 1)).text(),
-        bottom: $('tr.' + (this.y + 1) + ' td.' + this.x).text()
+        left: $("tr." + this.y + " td." + (this.x - 1)).text(),
+        right: $("tr." + this.y + " td." + (this.x + 1)).text(),
+        bottom: $("tr." + (this.y + 1) + " td." + this.x).text()
       };
     }
   }
 
   Square.prototype.draw = function() {
-    $('tr.' + this.y + ' td.' + this.x).css('background-color', this.color).text(RESERVED);
+    $("tr." + this.y + " td." + this.x).css("background-color", this.color).text(RESERVED);
   }
 
   Square.prototype.canMoveDown = function() {
