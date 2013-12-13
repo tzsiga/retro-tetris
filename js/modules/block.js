@@ -102,14 +102,14 @@ define(["square"], function(Square) {
       var bottomEdge = 0;
 
       for (var i = this.squares.length - 1; i >= 0; i--) {
-        if (this.squares[i].x < leftEdge)
-          leftEdge = this.squares[i].x;
-        if (this.squares[i].x > rightEdge)
-          rightEdge = this.squares[i].x;
-        if (this.squares[i].y < topEdge)
-          topEdge = this.squares[i].y;
-        if (this.squares[i].y > bottomEdge)
-          bottomEdge = this.squares[i].y;
+        if (this.squares[i].x() < leftEdge)
+          leftEdge = this.squares[i].x();
+        if (this.squares[i].x() > rightEdge)
+          rightEdge = this.squares[i].x();
+        if (this.squares[i].y() < topEdge)
+          topEdge = this.squares[i].y();
+        if (this.squares[i].y() > bottomEdge)
+          bottomEdge = this.squares[i].y();
       };
 
       return { left: leftEdge, right: rightEdge, top: topEdge, bottom: bottomEdge };
@@ -169,7 +169,7 @@ define(["square"], function(Square) {
     }
 
     this.rotationPoint = function() {
-      return { x: this.squares[1].x, y: this.squares[1].y };
+      return { x: this.squares[1].x(), y: this.squares[1].y() };
     }
 
     this.rotationMatrix = function() {
@@ -181,7 +181,7 @@ define(["square"], function(Square) {
       var matrix = new Array();
       
       for (var i = this.squares.length - 1; i >= 0; i--) {
-        matrix.push([this.squares[i].x - rotationPoint.x, this.squares[i].y - rotationPoint.y]);
+        matrix.push([this.squares[i].x() - rotationPoint.x(), this.squares[i].y() - rotationPoint.y()]);
       }
 
       return matrix;
@@ -208,7 +208,7 @@ define(["square"], function(Square) {
       var rotationPoint = this.rotationPoint();
 
       for (var i = 0; i < rotatedOffset.length - 1; i++) {
-        if (rotationPoint.x + rotatedOffset[i].x < 0 || rotationPoint.x + rotatedOffset[i].x >= AREA_WIDTH) {
+        if (rotationPoint.x() + rotatedOffset[i].x() < 0 || rotationPoint.x() + rotatedOffset[i].x() >= AREA_WIDTH) {
           return false;
         }
       }
@@ -223,7 +223,7 @@ define(["square"], function(Square) {
         var rotationPoint = this.rotationPoint();
 
         for (var i = this.squares.length - 1; i >= 0; i--) {
-          this.squares[i].set(rotationPoint.x + rotatedOffset[i].x, rotationPoint.y + rotatedOffset[i].y);
+          this.squares[i].set(rotationPoint.x() + rotatedOffset[i].x(), rotationPoint.y() + rotatedOffset[i].y());
         };
       }
     }
@@ -283,7 +283,7 @@ define(["square"], function(Square) {
     var temp = this.squares;
 
     for (var i = this.squares.length - 1; i >= 0; i--) {
-      if (this.squares[i].y == rowNumber) {
+      if (this.squares[i].y() == rowNumber) {
         temp.splice(i, 1);
       }
     }

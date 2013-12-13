@@ -20,8 +20,8 @@ define(["block"], function(Block) {
         
         // based on the type, the (x,y) is not necessary filled!
         // check all block types
-        expect(b.squares[0].x).toBe(1);
-        expect(b.squares[0].y).toBe(2);
+        expect(b.squares[0].x()).toBe(1);
+        expect(b.squares[0].y()).toBe(2);
       });
 
       it("with 3 params is possible for 7 distinct types", function() {

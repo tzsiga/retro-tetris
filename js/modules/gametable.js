@@ -77,7 +77,7 @@ define(["jquery", "block"], function($, Block) {
 
     this.shiftDownBlockAboveRow = function(block, row) {
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (block.squares[i].y == row - 1)
+        if (block.squares[i].y() == row - 1)
           block.squares[i].moveDown();
       }
     }
