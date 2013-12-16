@@ -79,7 +79,7 @@ define(["jquery", "block"], function($, Block) {
     this.fillRow = function(emptyRow) {
       for (var row = emptyRow; row >= 0; row--) {
         for (var i = this.blocks.length - 1; i >= 0; i--) {
-          this.blocks[i].shiftDownAboveRow(row);
+          this.blocks[i].shiftDownRowsAbove(row);
         }
       }
     }

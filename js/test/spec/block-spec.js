@@ -57,31 +57,31 @@ define(["block"], function(Block) {
         expect(this.b.edges().bottom).toBeLessThan(AREA_HEIGHT - 1);
       });
 
-      it("width should be between 0 and 5", function() {
+      xit("width should be between 0 and 5", function() {
         expect(this.b.getWidth()).toBeGreaterThan(0);
         expect(this.b.getWidth()).toBeLessThan(5);
       });
 
-      it("height should be between 0 and 5", function() {
+      xit("height should be between 0 and 5", function() {
         expect(this.b.getHeight()).toBeGreaterThan(0);
         expect(this.b.getHeight()).toBeLessThan(5);
       });
 
-      it("should have max 4 movable squares", function() {
+      xit("should have max 4 movable squares", function() {
         expect(this.b.numOfMovableSquaresDown()).toBeLessThan(5);
         expect(this.b.numOfMovableSquaresLeft()).toBeLessThan(5);
         expect(this.b.numOfMovableSquaresRight()).toBeLessThan(5);
       });
 
-      it("can move down", function() {
+      xit("can move down", function() {
         expect(this.b.canMoveDown()).toBe(true);
       });
 
-      it("can move left", function() {
+      xit("can move left", function() {
         expect(this.b.canMoveLeft()).toBe(true);
       });
 
-      it("can move right", function() {
+      xit("can move right", function() {
         expect(this.b.canMoveRight()).toBe(true);
       });
 
