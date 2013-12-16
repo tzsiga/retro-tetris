@@ -99,6 +99,11 @@ define(["square"], function(Square) {
       }
     }
 
+    // todo
+    function _setType(_color, shapeMask) {
+      color = _color;
+    }
+
     function _setType1(posX, posY) {
       var color = "#A6E22E";
       squares.push(new Square(posX, posY, color));
@@ -237,11 +242,11 @@ define(["square"], function(Square) {
     }
 
     function _offsetMatrix() {
-      var r = _rotationPoint();
+      var rp = _rotationPoint();
       var matrix = new Array();
       
       for (var i = squares.length - 1; i >= 0; i--) {
-        matrix.push([squares[i].x() - r.x, squares[i].y() - r.y]);
+        matrix.push([squares[i].x() - rp.x, squares[i].y() - rp.y]);
       }
 
       return matrix;

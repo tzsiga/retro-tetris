@@ -1,58 +1,63 @@
 define(["jquery", "block"], function($, Block) {
 
   function GameTable(height, width) {
-    this.height = height;
-    this.width = width;
-    this.blocks = new Array();
+    var height = height;
+    var width = width;
+    var blocks = new Array();
+    var table = $(document.createElement("table")).attr("id", "game_area");
 
-    this.init = function() {
-      this.table = $(document.createElement("table")).attr("id", "game_area");
+    for (var i = 0; i < height; i++) {
+      var new_row = $(document.createElement("tr")).attr("class", i);
 
-      for (var i = 0; i < height; i++) {
-        var new_row = $(document.createElement("tr")).attr("class", i);
-
-        for (var j = 0; j < width; j++) {
-          $(new_row).append($(document.createElement("td")).attr("class", j));
-        }
-
-        $(this.table).append(new_row);
+      for (var j = 0; j < width; j++) {
+        $(new_row).append($(document.createElement("td")).attr("class", j));
       }
 
-      this.addBlock(new Block());
+      $(table).append(new_row);
     }
 
-    this.addBlock = function(block) {
-      this.blocks.push(block);
+    addBlock(new Block());
+
+    function addBlock(block) {
+      blocks.push(block);
     }
 
-    this.clear = function() {
-      $(this.table).find("td").each(function(id, cell) {
+    function getFallingBlock() {
+      return blocks[blocks.length - 1];
+    }
+
+    function clearFullRows() {
+      var fullRows = _getFullRows();
+
+      _clearRows(fullRows);
+      _shrink(fullRows);
+    }
+
+    function redraw() {
+      _clear();
+      _drawBlocks();
+    }
+
+    function _clear() {
+      $(table).find("td").each(function(id, cell) {
         $(cell).css("background-color", BG_COLOR).text("");
       });
     }
 
-    this.isReservedCell = function(x, y) {
+    function _isReservedCell(x, y) {
       if ($("tr." + y + " td." + x).text() === RESERVED)
         return true;
       return false;
     }
 
-    this.drawBlocks = function() {
-      var gt = this;
-      
-      for (var i = this.blocks.length - 1; i >= 0; i--) {
-        this.blocks[i].drawSquares();
-      }
-    }
-
-    this.getFullRows = function() {
+    function _getFullRows() {
       var rowNumbers = new Array();
 
       for (var y = AREA_HEIGHT - 1; y >= 0; y--) {
         var reservedRow = true;
 
         for (var x = AREA_WIDTH - 1; x >= 0; x--) {
-          if (!this.isReservedCell(x, y))
+          if (!_isReservedCell(x, y))
             reservedRow = false;
         }
 
@@ -63,52 +68,52 @@ define(["jquery", "block"], function($, Block) {
       return rowNumbers;
     }
 
-    this.clearRows = function(rowNumbers) {
+    function _clearRows(rowNumbers) {
       for (var i = rowNumbers.length - 1; i >= 0; i--) {
-        this.clearRow(rowNumbers[i]);
+        _clearRow(rowNumbers[i]);
       }
     }
 
-    this.clearRow = function(rowNumber) {
-      for (var i = this.blocks.length - 1; i >= 0; i--) {
-        this.blocks[i].clearRow(rowNumber);
+    function _clearRow(rowNumber) {
+      for (var i = blocks.length - 1; i >= 0; i--) {
+        blocks[i].clearRow(rowNumber);
       }
     }
 
-
-    this.fillRow = function(emptyRow) {
+    function _fillRow(emptyRow) {
       for (var row = emptyRow; row >= 0; row--) {
-        for (var i = this.blocks.length - 1; i >= 0; i--) {
-          this.blocks[i].shiftDownRowsAbove(row);
+        for (var i = blocks.length - 1; i >= 0; i--) {
+          blocks[i].shiftDownRowsAbove(row);
         }
       }
     }
 
-    this.shrink = function(emptyRows) {
+    function _shrink(emptyRows) {
       emptyRows.sort();
 
       for (var i = emptyRows.length - 1; i >= 0; i--) {
-        this.fillRow(emptyRows[i]);
+        _fillRow(emptyRows[i]);
       }
     }
 
-    this.init();
-  }
+    function _drawBlocks() {
+      var gt = this;
+      
+      for (var i = blocks.length - 1; i >= 0; i--) {
+        blocks[i].drawSquares();
+      }
+    }
 
-  GameTable.prototype.redraw = function() {
-    this.clear();
-    this.drawBlocks();
-  }
+    return {
+      // should be private
+      table: table,
+      blocks: blocks,
 
-  GameTable.prototype.getFallingBlock = function() {
-    return this.blocks[this.blocks.length - 1];
-  }
-
-  GameTable.prototype.clearFullRows = function() {
-    var fullRows = this.getFullRows();
-
-    this.clearRows(fullRows);
-    this.shrink(fullRows);
+      addBlock: addBlock,
+      getFallingBlock: getFallingBlock,
+      clearFullRows: clearFullRows,
+      redraw: redraw
+    };
   }
 
   return GameTable;
