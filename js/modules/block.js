@@ -14,25 +14,60 @@ define(["square"], function(Square) {
 
     switch (type) {
       case 1:
-        _setType1(posX, posY);
+        _setType(posX, posY, "#A6E22E", new Array(
+          { x: 0, y: 0 },
+          { x: 0, y: 1 },
+          { x: 1, y: 1 },
+          { x: 0, y: 2 }
+        ));
         break;
       case 2:
-        _setType2(posX, posY);
+        _setType(posX, posY, "#F92672", new Array(
+          { x: 0, y: 0 },
+          { x: 0, y: 1 },
+          { x: 1, y: 0 },
+          { x: 1, y: 1 }
+        ));
         break;
       case 3:
-        _setType3(posX, posY);
+        _setType(posX, posY, "#66D9EF", new Array(
+          { x: 0, y: 0 },
+          { x: 0, y: 1 },
+          { x: 0, y: 2 },
+          { x: 0, y: 3 }
+        ));
         break;
       case 4:
-        _setType4(posX, posY);
+        _setType(posX, posY, "#FD971F", new Array(
+          { x: 0, y: 0 },
+          { x: 1, y: 0 },
+          { x: 1, y: 1 },
+          { x: 2, y: 1 }
+        ));
         break;
       case 5:
-        _setType5(posX, posY);
+        _setType(posX, posY, "#FD971F", new Array(
+          { x: 0, y: 1 },
+          { x: 1, y: 1 },
+          { x: 1, y: 0 },
+          { x: 2, y: 0 }
+        ));
         break;
       case 6:
-        _setType6(posX, posY);
+        _setType(posX, posY, "#E6DB74", new Array(
+          { x: 1, y: 0 },
+          { x: 1, y: 1 },
+          { x: 1, y: 2 },
+          { x: 0, y: 2 }
+        ));
         break;
       case 7:
-        _setType7(posX, posY);
+        _setType(posX, posY, "#E6DB74", new Array(
+          { x: 0, y: 0 },
+          { x: 0, y: 1 },
+          { x: 0, y: 2 },
+          { x: 1, y: 2 }
+        ));
         break;
     }
 
@@ -99,65 +134,10 @@ define(["square"], function(Square) {
       }
     }
 
-    // todo
-    function _setType(_color, shapeMask) {
-      color = _color;
-    }
-
-    function _setType1(posX, posY) {
-      var color = "#A6E22E";
-      squares.push(new Square(posX, posY, color));
-      squares.push(new Square(posX, posY + 1, color));
-      squares.push(new Square(posX + 1, posY + 1, color));
-      squares.push(new Square(posX, posY + 2, color));
-    }
-
-    function _setType2(posX, posY) {
-      var color = "#F92672";
-      squares.push(new Square(posX, posY, color));
-      squares.push(new Square(posX, posY + 1, color));
-      squares.push(new Square(posX + 1, posY, color));
-      squares.push(new Square(posX + 1, posY + 1, color));
-    }
-
-    function _setType3(posX, posY) {
-      var color = "#66D9EF";
-      squares.push(new Square(posX, posY, color));
-      squares.push(new Square(posX, posY + 1, color));
-      squares.push(new Square(posX, posY + 2, color));
-      squares.push(new Square(posX, posY + 3, color));
-    }
-
-    function _setType4(posX, posY) {
-      var color = "#FD971F";
-      squares.push(new Square(posX, posY, color));
-      squares.push(new Square(posX + 1, posY, color));
-      squares.push(new Square(posX + 1, posY + 1, color));
-      squares.push(new Square(posX + 2, posY + 1, color));
-    }
-
-    function _setType5(posX, posY) {
-      var color = "#FD971F";
-      squares.push(new Square(posX, posY + 1, color));
-      squares.push(new Square(posX + 1, posY + 1, color));
-      squares.push(new Square(posX + 1, posY, color));
-      squares.push(new Square(posX + 2, posY, color));
-    }
-
-    function _setType6(posX, posY) {
-      var color = "#E6DB74";
-      squares.push(new Square(posX + 1, posY, color));
-      squares.push(new Square(posX + 1, posY + 1, color));
-      squares.push(new Square(posX + 1, posY + 2, color));
-      squares.push(new Square(posX, posY + 2, color));
-    }
-
-    function _setType7(posX, posY) {
-      var color = "#E6DB74";
-      squares.push(new Square(posX, posY, color));
-      squares.push(new Square(posX, posY + 1, color));
-      squares.push(new Square(posX, posY + 2, color));
-      squares.push(new Square(posX + 1, posY + 2, color));
+    function _setType(posX, posY, color, mask) {
+      for (var i = mask.length - 1; i >= 0; i--) {
+        squares.push(new Square(posX + mask[i].x, posY + mask[i].y, color));
+      }
     }
 
     function _edges() {
