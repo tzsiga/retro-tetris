@@ -1,0 +1,47 @@
+Tetris use cases
+================
+
+  actors: player
+
+  player can 
+    see the gametable
+
+      gametable
+        has a fix size
+        is empty by default
+        can draw to the dom
+        can have blocks
+
+        block
+          consist a positive number of squares (>1)
+
+            square
+              have a position(x,y)
+              have a color
+              can move left
+                if pos(x) > gametable left edge
+              can move right
+                if pos(x) < gametable right edge
+              can move down
+                if pos(y) > gametable bottom edge
+
+          can move left -
+          can move right -
+          can move down
+            if the block stays in the gametable
+            if does not overlap with other block(s)
+
+          falls from top until it cannot move down
+            only one block is falling at a time
+            game ends if one block reaches the top of the gametable
+          stays on the table if cannot move down
+
+        check full rows, after each block reached the bottom
+          if a row becomes full, remove that row
+          if multiple rows becomes full, remove all affected rows
+
+    rotate the falling block
+      only within the gametable (transformated block must be completly visible)
+      cannot rotate into anther element
+
+    move down the falling block fast

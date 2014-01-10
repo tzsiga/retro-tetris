@@ -20,14 +20,14 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
           e.preventDefault();
           gt.getFallingBlock().rotateLeft();
           break;
-        case 40: // down
+        case 40: // down 
           e.preventDefault();
           gt.getFallingBlock().rotateRight();
           break;
         case 32: // space
           e.preventDefault();
           gt.getFallingBlock().moveDown();
-    
+
           if (!gt.getFallingBlock().canMoveDown())
             gt.clearFullRows();
 

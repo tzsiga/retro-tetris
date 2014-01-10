@@ -4,12 +4,64 @@
 		"selected_items":
 		[
 			[
-				"ro",
-				"rowNumber"
+				"toBeD",
+				"toBeDefined"
+			],
+			[
+				"n",
+				"neighbours"
+			],
+			[
+				"pr",
+				"privateMethod"
+			],
+			[
+				"pub",
+				"publicProperty"
+			],
+			[
+				"priave",
+				"privateProperty"
+			],
+			[
+				"pro",
+				"property"
 			],
 			[
 				"p",
-				"proto	Prototype"
+				"publicMethod"
+			],
+			[
+				"chec",
+				"checkIfSqCanMoveDown"
+			],
+			[
+				"mo",
+				"moveAllDown"
+			],
+			[
+				"row",
+				"rowNumbers"
+			],
+			[
+				"ro",
+				"rowNumbers"
+			],
+			[
+				"clear",
+				"clearRows"
+			],
+			[
+				"get",
+				"getFullRows"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"back",
+				"background-color"
 			],
 			[
 				"prot",
@@ -32,20 +84,12 @@
 				"rowNumbers"
 			],
 			[
-				"row",
-				"rowNumbers"
-			],
-			[
 				"game",
 				"GameTable"
 			],
 			[
 				"squ",
 				"square"
-			],
-			[
-				"pr",
-				"proto	Prototype"
 			],
 			[
 				"c",
@@ -56,16 +100,8 @@
 				"canMoveLeft"
 			],
 			[
-				"mo",
-				"moveRight"
-			],
-			[
 				"ca",
 				"canMoveLeft"
-			],
-			[
-				"l",
-				"length"
 			],
 			[
 				"A",
@@ -152,10 +188,6 @@
 				"addSquare"
 			],
 			[
-				"pro",
-				"proto	Prototype"
-			],
-			[
 				"tr",
 				"true"
 			],
@@ -207,7 +239,7 @@
 			"file": "js/modules/app.js",
 			"settings":
 			{
-				"buffer_size": 1195,
+				"buffer_size": 1349,
 				"line_ending": "Windows"
 			}
 		},
@@ -215,7 +247,7 @@
 			"file": "js/modules/gametable.js",
 			"settings":
 			{
-				"buffer_size": 2373,
+				"buffer_size": 2621,
 				"line_ending": "Windows"
 			}
 		},
@@ -223,7 +255,7 @@
 			"file": "js/modules/block.js",
 			"settings":
 			{
-				"buffer_size": 8319,
+				"buffer_size": 6704,
 				"line_ending": "Windows"
 			}
 		},
@@ -231,7 +263,23 @@
 			"file": "js/modules/square.js",
 			"settings":
 			{
-				"buffer_size": 1348,
+				"buffer_size": 1679,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/test/spec/block-spec.js",
+			"settings":
+			{
+				"buffer_size": 2965,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/test/spec/square-spec.js",
+			"settings":
+			{
+				"buffer_size": 1319,
 				"line_ending": "Windows"
 			}
 		}
@@ -239,16 +287,28 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 60.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
-				"open",
-				"View: Toggle Open Files in Side Bar"
+				"",
+				"About"
+			],
+			[
+				"tab",
+				"View: Toggle Tabs"
 			],
 			[
 				"spa",
 				"Indentation: Convert to Spaces"
+			],
+			[
+				"rena",
+				"Snippet: for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"open",
+				"View: Toggle Open Files in Side Bar"
 			],
 			[
 				"con sp",
@@ -299,11 +359,28 @@
 	},
 	"file_history":
 	[
-		"/D/workspace/etc/tetris.js/index.html",
-		"/D/workspace/etc/tetris.js/js/modules/common.js",
+		"/D/workspace/etc/tetris.js/js/test/test-app.js",
+		"/D/userdata/taroczyt/Desktop/pogesz.txt",
+		"/D/userdata/taroczyt/Desktop/access_js_2.html",
+		"/D/workspace/etc/tetris.js/js/modules/app.js",
+		"/D/userdata/taroczyt/Desktop/access_js_1.html",
+		"/D/userdata/taroczyt/Desktop/2.html",
+		"/D/userdata/taroczyt/Desktop/access.js.html",
+		"/D/userdata/taroczyt/Desktop/access.js",
+		"/D/workspace/etc/tetris.js/js/modules/block.js",
 		"/D/workspace/etc/tetris.js/js/modules/gametable.js",
 		"/D/workspace/etc/tetris.js/js/modules/square.js",
-		"/D/workspace/etc/tetris.js/js/modules/app.js",
+		"/D/workspace/etc/tetris.js/js/config-test.js",
+		"/D/workspace/etc/tetris.js/js/config.js",
+		"/D/workspace/etc/tetris.js/index.html",
+		"/D/workspace/etc/tetris.js/js/test/runner.html",
+		"/D/workspace/etc/tetris.js/js/test/spec/block-spec.js",
+		"/D/workspace/etc/tetris.js/js/modules/common.js",
+		"/D/workspace/etc/tetris.js/css/base.css",
+		"/D/userdata/taroczyt/Desktop/serial.txt",
+		"/D/userdata/taroczyt/Desktop/Preferences.sublime-settings",
+		"/D/userdata/taroczyt/Desktop/lic.txt",
+		"/D/userdata/taroczyt/Application Data/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/D/userdata/taroczyt/Desktop/RulesUiTest.java",
 		"/D/userdata/taroczyt/Desktop/trunk/Tools and Processes tutorial.md",
 		"/C/CCaseViews/taroczyt_main_sview/ntmsvob/andsf/robin/server/build/subsgroupmanwebservice/wsgen/com/nsn/andsf/robin/webservice/subscribergroupmanagement/jaxws/GetAllSubscriberGroups.java",
@@ -312,19 +389,12 @@
 		"/D/userdata/taroczyt/Desktop/bookings.txt",
 		"/D/userdata/taroczyt/Desktop/bookings.sql",
 		"/D/workspace/etc/tetris.js/tetris_js.sublime-project",
-		"/D/workspace/etc/tetris.js/js/modules/block.js",
-		"/D/workspace/etc/tetris.js/js/test/spec/block-spec.js",
-		"/D/workspace/etc/tetris.js/js/test/test-app.js",
-		"/D/workspace/etc/tetris.js/js/config-test.js",
-		"/D/workspace/etc/tetris.js/js/config.js",
-		"/D/workspace/etc/tetris.js/js/test/runner.html",
 		"/D/userdata/taroczyt/Desktop/NSN account info.txt",
 		"/D/workspace/etc/tetris.js/js/test/spec/PlayerSpec.js",
 		"/D/userdata/taroczyt/Desktop/jasmine-standalone-1.3.0/SpecRunner.html",
 		"/D/userdata/taroczyt/Desktop/loading.js",
 		"/D/workspace/etc/tetris.js/js/lib/jasmine-1.3.0.js",
 		"/D/workspace/etc/tetris.js/js/lib/jasmine-html-1.3.0.js",
-		"/D/workspace/etc/tetris.js/css/base.css",
 		"/D/userdata/taroczyt/Desktop/jasmine-standalone-1.3.0/lib/jasmine-1.3.0/jasmine.css",
 		"/D/workspace/etc/tetris.js/js/test/SpecRunner.html",
 		"/D/userdata/taroczyt/Desktop/jasmine-standalone-1.3.0/spec/PlayerSpec.js",
@@ -340,7 +410,6 @@
 		"/D/workspace/etc/tetris.js/js/square.js",
 		"/D/workspace/etc/tetris.js/js/block.js",
 		"/D/workspace/etc/tetris.js/js/gametable.js",
-		"/D/userdata/taroczyt/Application Data/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/D/userdata/taroczyt/Desktop/tetris.js/index.html",
 		"/D/userdata/taroczyt/Desktop/tetris.js/js/plugins.js",
 		"/D/userdata/taroczyt/Desktop/tetris.js/js/main.js",
@@ -371,83 +440,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			");\n",
-			"console",
-			"split",
-			"clearOneRow",
+			"fillRow",
+			"clearRow",
+			"getFullRows",
+			"drawBlocks",
+			"shrink",
+			"clearRows",
 			"isReservedCell",
-			"console",
-			"console.",
-			"this.color",
-			"this.x",
-			"this.y",
+			"clear",
+			"addBlock",
+			"clear()",
+			"clear",
+			"this.",
+			" = function",
+			"this.",
+			"this.height",
+			"for",
+			"moveLeft",
+			"canMoveRight()",
+			"canMoveLeft()",
+			"rotate(",
+			"rotate",
+			"canRotate",
+			"matrixMultiply",
+			"multiply",
+			"offsetMatrix",
+			"canMoveLeft",
+			"rotationMatrix()",
+			"rotationPoint()",
+			"rotate(",
+			"rotate",
+			"canRotate",
+			"canMoveRight",
+			"canMoveLeft",
 			"getHeight",
 			"getWidth",
-			"foreach",
-			"s",
-			"foreach",
-			"}\n",
-			"Block.prototype",
-			"= this",
-			"),",
-			"local",
-			"rotateMatrix",
 			"rotationMatrix",
-			"matrix",
-			"rotatedMatrix",
-			"rotateOffsetMatrix",
-			"getEdges",
-			"getEnv",
-			"s.row",
-			"row",
-			"s.",
-			"row",
-			"column",
-			"isReservedCell",
-			"type",
-			"clear",
-			"drawBlocks",
+			"rotate",
+			"canRotate",
+			"matrix_multiply",
+			"multiply",
+			"offsetMatrix",
+			"rotationMatrix",
+			"rotationPoint",
 			"canMoveRight",
-			"Block.prototype",
-			"moveLeft",
-			"addType2",
-			"Block.prototype",
 			"canMoveLeft",
-			"canMoveDown",
-			"Block.prototype",
 			"numOfMovableSquaresRight",
 			"numOfMovableSquaresLeft",
 			"numOfMovableSquaresDown",
-			"numOfMovableSquaresRight",
-			"getWidth",
-			"getEdges",
-			"drawSquares",
+			"edges",
+			"setType",
+			"addType",
+			"shiftDownRowsAbove",
+			"clearRow",
+			"rotateRight",
+			"rotateLeft",
 			"canMoveDown",
-			"isReservedCell",
-			"draw",
-			"isReservedCell",
+			"moveRight",
+			"moveLeft",
+			"moveDown",
+			"drawSquares",
+			"splice",
+			"remove",
 			"canMoveRight",
-			"isReservedCell",
-			"na",
-			"numOfMovableSquares",
 			"canMoveLeft",
-			"canMoveDown",
-			"grey",
-			"drawSquares",
-			"jquery",
-			"column",
-			"row",
-			"piece",
-			"addPiece",
-			"white",
-			"drawsquares",
-			"pieces",
-			"addPiece",
-			"new_table",
-			"></",
-			"checkPieceStatus",
-			">\n",
-			"script"
+			"numOfMovableSquaresRight",
+			"numOfMovableSquaresLeft",
+			"numOfMovableSquaresDown",
+			"getHeight",
+			"getWidth",
+			"numOfMovableSquaresLeft",
+			"shiftDownAboveRow",
+			"console.log",
+			"rotationPoint",
+			"rotationPoint.y()",
+			"rotationPoint.x()",
+			"rotationPoint.y()",
+			"rotationPoint.x()",
+			".x()",
+			"rotationPoint().y()",
+			"rotationPoint().x()",
+			"rotationPoint().y()",
+			"rotationPoint().x()",
+			"rotationPoint().x",
+			".x",
+			"rotationPoint",
+			"this",
+			"squares",
+			"edges",
+			"squares",
+			"this.",
+			"this.squares",
+			" = function",
+			"this.",
+			"Block.prototype.",
+			"Block.prototype",
+			"neighbours",
+			"this.",
+			".x",
+			".y",
+			".x",
+			"this.x",
+			"this.y",
+			" = function",
+			"var",
+			"Square.prototype",
+			"this.",
+			" = function",
+			"Square.prototype.",
+			"0",
+			"getEdges",
+			"shouldBePrivate",
+			"alert",
+			"moveAboveBlockToRow",
+			"moveDownToRow",
+			"checkIfSqCanMoveDown",
+			"k",
+			"moveAllDown",
+			"'",
+			"DEFAULT_COLOR",
+			"'",
+			"rowNumbers",
+			"console.log",
+			"clearCell",
+			"hasSquaresAt",
+			".x",
+			");\n",
+			"console",
+			"split"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -455,6 +575,76 @@
 		"regex": false,
 		"replace_history":
 		[
+			"_fillRow",
+			"_clearRow",
+			"_getFullRows",
+			"_drawBlocks",
+			"_shrink",
+			"_clearRows",
+			"_isReservedCell",
+			"_clear",
+			"_addBlock",
+			"",
+			"function ",
+			"_canMoveRight()",
+			"_canMoveLeft()",
+			"_rotationMatrix()",
+			"_rotationPoint()",
+			"_canRotate",
+			"_canMoveRight",
+			"_canMoveLeft",
+			"_height",
+			"_width",
+			"_rotate",
+			"_canRotate",
+			"_matrixMultiply",
+			"_multiply",
+			"_offsetMatrix",
+			"_rotationMatrix",
+			"_rotationPoint",
+			"_canMoveRight",
+			"_canMoveLeft",
+			"_numOfMovableSquaresRight",
+			"_numOfMovableSquaresLeft",
+			"_numOfMovableSquaresDown",
+			"_edges",
+			"_setType",
+			"setType",
+			"rotationPoint.y",
+			"rotationPoint.x",
+			"rotationPoint.y",
+			"rotationPoint.x",
+			".x",
+			"rotationPoint().y",
+			"rotationPoint().x",
+			"",
+			"squares",
+			"",
+			"function ",
+			"function",
+			"this.",
+			"",
+			".y()",
+			".x()",
+			"x",
+			"y",
+			"",
+			"function",
+			"this",
+			"",
+			"function ",
+			"edges",
+			"privateMethod",
+			"console.log",
+			"shiftDownBlockAboveRow",
+			"moveAboveBlockToRow",
+			"moveDownToRow",
+			"i",
+			"fillRow",
+			"\"",
+			"BG_COLOR",
+			"\"",
+			"emptyRows",
 			"clearRow",
 			"color",
 			"x",
@@ -494,7 +684,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -503,15 +693,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1195,
+						"buffer_size": 1349,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1089,
-								1089
+								548,
+								548
 							]
 						],
 						"settings":
@@ -521,10 +711,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 51.0,
+						"translation.y": 102.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -533,15 +723,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2373,
+						"buffer_size": 2621,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1118,
-								1118
+								242,
+								242
 							]
 						],
 						"settings":
@@ -551,10 +741,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 240.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -563,15 +753,24 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8319,
+						"buffer_size": 6704,
 						"regions":
 						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+								],
+								"scope": "bookmarks"
+							}
 						},
 						"selection":
 						[
 							[
-								8280,
-								8280
+								1526,
+								1526
 							]
 						],
 						"settings":
@@ -581,7 +780,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4131.0,
+						"translation.y": 816.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -593,15 +792,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1348,
+						"buffer_size": 1679,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1347,
-								1347
+								496,
+								496
 							]
 						],
 						"settings":
@@ -610,11 +809,77 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 255.0,
+						"translation.x": 0.0,
+						"translation.y": 612.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "js/test/spec/block-spec.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2965,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1004,
+								1004
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 562.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/test/spec/square-spec.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1319,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								818,
+								818
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -637,11 +902,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.639403706688,
 			1.0
 		],
 		"rows":
@@ -662,7 +934,7 @@
 	"project": "tetris_js.sublime-project",
 	"replace":
 	{
-		"height": 94.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":

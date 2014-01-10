@@ -7,13 +7,13 @@ define(["jquery"], function($) {
 
     function X(_x) {
       if (typeof _x !== "undefined")
-        return x = _x;
+        x = _x;
       return x;
     }
 
     function Y(_y) {
       if (typeof _y !== "undefined")
-        return y = _y;
+        y = _y;
       return y;
     }
 
