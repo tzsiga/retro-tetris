@@ -1,7 +1,8 @@
-define(["square"], function(Square) {
+define(["square", "sprites", "rotation_matrix"], function(Square, Sprite, RotationMatrix) {
 
   function Block(posX, posY, type) {
     var squares = new Array();
+    var rotationMatrix = new RotationMatrix();
 
     if (typeof posX === "undefined")
       posX = (AREA_WIDTH / 2) - 1;
@@ -12,64 +13,7 @@ define(["square"], function(Square) {
     if (typeof type === "undefined")
       type = Math.floor((Math.random() * 7) + 1);
 
-    switch (type) {
-      case 1:
-        _setType(posX, posY, "#A6E22E", new Array(
-          { x: 0, y: 0 },
-          { x: 0, y: 1 },
-          { x: 1, y: 1 },
-          { x: 0, y: 2 }
-        ));
-        break;
-      case 2:
-        _setType(posX, posY, "#F92672", new Array(
-          { x: 0, y: 0 },
-          { x: 0, y: 1 },
-          { x: 1, y: 0 },
-          { x: 1, y: 1 }
-        ));
-        break;
-      case 3:
-        _setType(posX, posY, "#66D9EF", new Array(
-          { x: 0, y: 0 },
-          { x: 0, y: 1 },
-          { x: 0, y: 2 },
-          { x: 0, y: 3 }
-        ));
-        break;
-      case 4:
-        _setType(posX, posY, "#FD971F", new Array(
-          { x: 0, y: 0 },
-          { x: 1, y: 0 },
-          { x: 1, y: 1 },
-          { x: 2, y: 1 }
-        ));
-        break;
-      case 5:
-        _setType(posX, posY, "#FD971F", new Array(
-          { x: 0, y: 1 },
-          { x: 1, y: 1 },
-          { x: 1, y: 0 },
-          { x: 2, y: 0 }
-        ));
-        break;
-      case 6:
-        _setType(posX, posY, "#E6DB74", new Array(
-          { x: 1, y: 0 },
-          { x: 1, y: 1 },
-          { x: 1, y: 2 },
-          { x: 0, y: 2 }
-        ));
-        break;
-      case 7:
-        _setType(posX, posY, "#E6DB74", new Array(
-          { x: 0, y: 0 },
-          { x: 0, y: 1 },
-          { x: 0, y: 2 },
-          { x: 1, y: 2 }
-        ));
-        break;
-    }
+    _setType(posX, posY, type);
 
     function canMoveDown() {
       if (_numOfMovableSquaresDown() < _width())
@@ -86,7 +30,7 @@ define(["square"], function(Square) {
     }
 
     function moveLeft() {
-      if (_canMoveLeft()) {
+      if (_numOfMovableSquaresLeft() >= _height()) {
         for (var i = squares.length - 1; i >= 0; i--) {
           squares[i].moveLeft();
         }
@@ -94,7 +38,7 @@ define(["square"], function(Square) {
     }
 
     function moveRight() {
-      if (_canMoveRight()) {
+      if (_numOfMovableSquaresRight() >= _height()) {
         for (var i = squares.length - 1; i >= 0; i--) {
           squares[i].moveRight();
         }
@@ -102,11 +46,11 @@ define(["square"], function(Square) {
     }
 
     function rotateLeft() {
-      _rotate(_rotationMatrix().left);
+      _rotate(rotationMatrix.left);
     }
 
     function rotateRight() {
-      _rotate(_rotationMatrix().right);
+      _rotate(rotationMatrix.right);
     }
 
     function shiftDownRowsAbove(row) {
@@ -134,7 +78,41 @@ define(["square"], function(Square) {
       }
     }
 
-    function _setType(posX, posY, color, mask) {
+    function _setType(posX, posY, type) {
+      var color;
+      var mask;
+
+      switch (type) {
+        case 1:
+          color = "#A6E22E";
+          mask = new Sprite(1);
+          break;
+        case 2:
+          color = "#F92672";
+          mask = new Sprite(2);
+          break;
+        case 3:
+          color = "#66D9EF";
+          mask = new Sprite(3);
+          break;
+        case 4:
+          color = "#FD971F";
+          mask = new Sprite(4);
+          break;
+        case 5:
+          color = "#FD971F";
+          mask = new Sprite(5);
+          break;
+        case 6:
+          color = "#E6DB74";
+          mask = new Sprite(6);
+          break;
+        case 7:
+          color = "#E6DB74";
+          mask = new Sprite(7);
+          break;
+      }
+
       for (var i = mask.length - 1; i >= 0; i--) {
         squares.push(new Square(posX + mask[i].x, posY + mask[i].y, color));
       }
@@ -201,24 +179,8 @@ define(["square"], function(Square) {
       return n;
     }
 
-    function _canMoveLeft() {
-      if (_numOfMovableSquaresLeft() < _height())
-        return false;
-      return true;
-    }
-
-    function _canMoveRight() {
-      if (_numOfMovableSquaresRight() < _height())
-        return false;
-      return true;
-    }
-
     function _rotationPoint() {
       return { x: squares[1].x(), y: squares[1].y() };
-    }
-
-    function _rotationMatrix() {
-      return { right: [[0, 1], [-1, 0]] , left: [[0, -1], [1, 0]] };
     }
 
     function _offsetMatrix() {

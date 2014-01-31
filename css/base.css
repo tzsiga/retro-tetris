@@ -1,9 +1,11 @@
 body {
-	background-color: #272822;
+	/*background-color: #272822;*/
+	background-color: white;
 }
 
 table#game_area {
-  border: 2px solid #F8F8F2;
+  /*border: 2px solid #F8F8F2;*/
+  border: 2px solid dimgray;
   margin: 50px auto;
 }
 

@@ -10,6 +10,8 @@ require.config({
     app: "modules/app",
     gametable: "modules/gametable",
     block: "modules/block",
+    sprites: "modules/sprites",
+    rotation_matrix: "modules/rotation_matrix",
     square: "modules/square"
   },
 

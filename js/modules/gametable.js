@@ -80,19 +80,19 @@ define(["jquery", "block"], function($, Block) {
       }
     }
 
-    function _fillRow(emptyRow) {
-      for (var row = emptyRow; row >= 0; row--) {
-        for (var i = blocks.length - 1; i >= 0; i--) {
-          blocks[i].shiftDownRowsAbove(row);
-        }
-      }
-    }
-
     function _shrink(emptyRows) {
       emptyRows.sort();
 
       for (var i = emptyRows.length - 1; i >= 0; i--) {
         _fillRow(emptyRows[i]);
+      }
+    }
+
+    function _fillRow(emptyRow) {
+      for (var row = emptyRow; row >= 0; row--) {
+        for (var i = blocks.length - 1; i >= 0; i--) {
+          blocks[i].shiftDownRowsAbove(row);
+        }
       }
     }
 
