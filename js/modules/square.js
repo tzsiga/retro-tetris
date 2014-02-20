@@ -17,20 +17,20 @@ define([], function() {
       return y;
     }
 
-    function set(_x, _y) {
+    function setPos(_x, _y) {
       X(_x);
       Y(_y);
     }
 
-    function Color() {
+    function getColor() {
       return color;
     }
 
     return {
       x: X,
       y: Y,
-      set: set,
-      color: Color
+      setPos: setPos,
+      getColor: getColor
     };
   }
 

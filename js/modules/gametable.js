@@ -11,7 +11,7 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       blocks.push(block);
     }
 
-    function getFallingBlock() {
+    function fallingBlock() {
       return blocks[blocks.length - 1];
     }
 
@@ -20,6 +20,43 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
 
       _clearRows(fullRows);
       _shrink(fullRows);
+    }
+
+    function canBlockMoveDown(block) {
+      return _movableSquaresDownInBlock(block) >= block.width();
+
+    }
+
+    function moveBlockDown() {
+      if (canBlockMoveDown(fallingBlock())) {
+        for (var i = fallingBlock().squares.length - 1; i >= 0; i--) {
+          _moveSquareDown(fallingBlock().squares[i]);
+        }
+      }
+    }
+
+    function moveBlockLeft() {
+      if (_movableSquaresLeftInBlock(fallingBlock()) >= fallingBlock().height()) {
+        for (var i = fallingBlock().squares.length - 1; i >= 0; i--) {
+          _moveSquareLeft(fallingBlock().squares[i]);
+        }
+      }
+    }
+
+    function moveBlockRight() {
+      if (_movableSquaresRightInBlock(fallingBlock()) >= fallingBlock().height()) {
+        for (var i = fallingBlock().squares.length - 1; i >= 0; i--) {
+          _moveSquareRight(fallingBlock().squares[i]);
+        }
+      }
+    }
+
+    function rotateBlockLeft() {
+      _rotateBlock(rotationMatrix.left, fallingBlock());
+    }
+
+    function rotateBlockRight() {
+      _rotateBlock(rotationMatrix.right, fallingBlock());
     }
 
     function redraw() {
@@ -50,9 +87,8 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
     }
 
     function _isReservedCell(x, y) {
-      if ($("tr." + y + " td." + x).text() === RESERVED)
-        return true;
-      return false;
+      return $("tr." + y + " td." + x).text() === RESERVED;
+
     }
 
     function _getFullRows() {
@@ -81,7 +117,7 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
 
     function _clearRow(rowNumber) {
       for (var i = blocks.length - 1; i >= 0; i--) {
-        bl_clearRow(rowNumber, blocks[i]);
+        _clearRowInBlock(rowNumber, blocks[i]);
       }
     }
 
@@ -96,7 +132,7 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
     function _fillRow(emptyRow) {
       for (var row = emptyRow; row >= 0; row--) {
         for (var i = blocks.length - 1; i >= 0; i--) {
-          bl_shiftDownRowsAbove(row, blocks[i]);
+          _shiftDownBlockAboveRow(row, blocks[i]);
         }
       }
     }
@@ -105,58 +141,18 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       var gt = this;
 
       for (var i = blocks.length - 1; i >= 0; i--) {
-        bl_drawSquares(blocks[i]);
+        _drawBlock(blocks[i]);
       }
     }
 
-    // from Bl ----------------------------------
-
-    function bl_canMoveDown(block) {
-      if (bl_numOfMovableSquaresDown(block) < block.width())
-        return false;
-      return true;
-    }
-
-    function bl_moveDown(block) {
-      if (bl_canMoveDown(block)) {
-        for (var i = block.squares.length - 1; i >= 0; i--) {
-          sq_moveDown(block.squares[i]);
-        }
-      }
-    }
-
-    function bl_moveLeft(block) {
-      if (bl_numOfMovableSquaresLeft(block) >= block.height()) {
-        for (var i = block.squares.length - 1; i >= 0; i--) {
-          sq_moveLeft(block.squares[i]);
-        }
-      }
-    }
-
-    function bl_moveRight(block) {
-      if (bl_numOfMovableSquaresRight(block) >= block.height()) {
-        for (var i = block.squares.length - 1; i >= 0; i--) {
-          sq_moveRight(block.squares[i]);
-        }
-      }
-    }
-
-    function bl_rotateLeft(block) {
-      bl_rotate(rotationMatrix.left, block);
-    }
-
-    function bl_rotateRight(block) {
-      bl_rotate(rotationMatrix.right, block);
-    }
-
-    function bl_shiftDownRowsAbove(row, block) {
+    function _shiftDownBlockAboveRow(row, block) {
       for (var i = block.squares.length - 1; i >= 0; i--) {
         if (block.squares[i].y() == row - 1)
-          sq_moveDown(block.squares[i]);
+          _moveSquareDown(block.squares[i]);
       }
     }
 
-    function bl_clearRow(rowNumber, block) {
+    function _clearRowInBlock(rowNumber, block) {
       var temp = block.squares;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
@@ -168,48 +164,46 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       block.squares = temp;
     }
 
-    function bl_drawSquares(block) {
+    function _drawBlock(block) {
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        sq_draw(block.squares[i]);
+        _drawSquare(block.squares[i]);
       }
     }
 
-    // privates
-
-    function bl_numOfMovableSquaresDown(block) {
+    function _movableSquaresDownInBlock(block) {
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (sq_canMoveDown(block.squares[i]))
+        if (_canSquareMoveDown(block.squares[i]))
           n++;
       }
 
       return n;
     }
 
-    function bl_numOfMovableSquaresLeft(block) {
+    function _movableSquaresLeftInBlock(block) {
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (sq_canMoveLeft(block.squares[i]))
+        if (_canSquareMoveLeft(block.squares[i]))
           n++;
       }
 
       return n;
     }
 
-    function bl_numOfMovableSquaresRight(block) {
+    function _movableSquaresRightInBlock(block) {
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (sq_canMoveRight(block.squares[i]))
+        if (_canSquareMoveRight(block.squares[i]))
           n++;
       }
 
       return n;
     }
 
-    function bl_canRotate(rotatedOffset, block) {
+    function _canRotateBlock(rotatedOffset, block) {
       var rp = block.rotationPoint();
 
       for (var i = 0; i < rotatedOffset.length - 1; i++) {
@@ -221,43 +215,40 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       return true;
     }
 
-    function bl_rotate(rotationMatrix, block) {
-      var rotatedOffset = bl_matrixMultiply(rotationMatrix, block.offsetMatrix());
+    function _rotateBlock(rotationMatrix, block) {
+      var rotatedOffset = _matrixMultiply(rotationMatrix, block.offsetMatrix());
 
-      if (bl_canRotate(rotatedOffset, block)) {
+      if (_canRotateBlock(rotatedOffset, block)) {
         var rp = block.rotationPoint();
 
         for (var i = block.squares.length - 1; i >= 0; i--) {
-          block.squares[i].set(rp.x + rotatedOffset[i].x, rp.y + rotatedOffset[i].y);
+          block.squares[i].setPos(rp.x + rotatedOffset[i].x, rp.y + rotatedOffset[i].y);
         }
       }
     }
 
-    function bl_multiply(rotation, vector) {
+    function _multiply(rotation, vector) {
       return {
         x: rotation[0][0] * vector[0] + rotation[1][0] * vector[1],
         y: rotation[0][1] * vector[0] + rotation[1][1] * vector[1]
       };
     }
 
-    function bl_matrixMultiply(rotation, offset) {
+    function _matrixMultiply(rotation, offset) {
       var rot = [];
 
       for (var i = 0; i < offset.length; i++) {
-        rot.push(bl_multiply(rotation, offset[i]));
+        rot.push(_multiply(rotation, offset[i]));
       }
 
       return rot;
     }
 
-
-    // from Sq ----------------------------------
-
-    function sq_draw(square) {
-      $("tr." + square.y() + " td." + square.x()).css("background-color", square.color()).text(RESERVED);
+    function _drawSquare(square) {
+      $("tr." + square.y() + " td." + square.x()).css("background-color", square.getColor()).text(RESERVED);
     }
 
-    function sq_neighbours(square) {
+    function _getSquareNeighbours(square) {
       return {
         left: $("tr." + square.y() + " td." + (square.x() - 1)).text(),
         right: $("tr." + square.y() + " td." + (square.x() + 1)).text(),
@@ -265,50 +256,45 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       };
     }
 
-    function sq_canMoveDown(square) {
-      if (sq_neighbours(square).bottom == RESERVED || square.y() + 1 > AREA_HEIGHT - 1)
-        return false;
-      return true;
+    function _canSquareMoveDown(square) {
+      return !(_getSquareNeighbours(square).bottom == RESERVED || square.y() + 1 > AREA_HEIGHT - 1);
+
     }
 
-    function sq_canMoveLeft(square) {
-      if (sq_neighbours(square).left == RESERVED || square.x() - 1 < 0)
-        return false;
-      return true;
+    function _canSquareMoveLeft(square) {
+      return !(_getSquareNeighbours(square).left == RESERVED || square.x() - 1 < 0);
+
     }
 
-    function sq_canMoveRight(square) {
-      if (sq_neighbours(square).right == RESERVED || square.x() + 1 > AREA_WIDTH - 1)
-        return false;
-      return true;
+    function _canSquareMoveRight(square) {
+      return !(_getSquareNeighbours(square).right == RESERVED || square.x() + 1 > AREA_WIDTH - 1);
+
     }
 
-    function sq_moveDown(square) {
+    function _moveSquareDown(square) {
       square.y(square.y() + 1);
     }
 
-    function sq_moveLeft(square) {
+    function _moveSquareLeft(square) {
       square.x(square.x() - 1);
     }
 
-    function sq_moveRight(square) {
+    function _moveSquareRight(square) {
       square.x(square.x() + 1);
     }
 
-    // ------------------------------------------
-
     return {
-      bl_moveDown: bl_moveDown,
-      bl_canMoveDown: bl_canMoveDown,
-      bl_moveLeft: bl_moveLeft,
-      bl_moveRight: bl_moveRight,
-      bl_rotateLeft: bl_rotateLeft,
-      bl_rotateRight: bl_rotateRight,
+      moveBlockDown: moveBlockDown,
+      canBlockMoveDown: canBlockMoveDown,
+      moveBlockLeft: moveBlockLeft,
+      moveBlockRight: moveBlockRight,
+      rotateBlockLeft: rotateBlockLeft,
+      rotateBlockRight: rotateBlockRight,
 
       table: table,
       blocks: blocks,
       addBlock: addBlock,
-      getFallingBlock: getFallingBlock,
+      fallingBlock: fallingBlock,
       clearFullRows: clearFullRows,
       redraw: redraw
     };
