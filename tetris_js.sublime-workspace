@@ -247,7 +247,7 @@
 			"file": "js/modules/gametable.js",
 			"settings":
 			{
-				"buffer_size": 2621,
+				"buffer_size": 2708,
 				"line_ending": "Windows"
 			}
 		},
@@ -255,15 +255,7 @@
 			"file": "js/modules/block.js",
 			"settings":
 			{
-				"buffer_size": 6580,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/modules/sprites.js",
-			"settings":
-			{
-				"buffer_size": 1674,
+				"buffer_size": 5848,
 				"line_ending": "Windows"
 			}
 		},
@@ -271,7 +263,7 @@
 			"file": "js/modules/square.js",
 			"settings":
 			{
-				"buffer_size": 1679,
+				"buffer_size": 1718,
 				"line_ending": "Windows"
 			}
 		}
@@ -351,6 +343,7 @@
 	},
 	"file_history":
 	[
+		"/D/apps/xampp/htdocs/workspace/tetris/js/modules/sprites.js",
 		"/D/workspace/github/tetris.js/js/lib/require.js",
 		"/D/workspace/github/tetris.js/js/modules/common.js",
 		"/D/workspace/github/tetris.js/css/base.css",
@@ -422,7 +415,7 @@
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
@@ -681,7 +674,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -738,166 +731,8 @@
 						"selection":
 						[
 							[
-								519,
-								528
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 85.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/modules/gametable.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2621,
-						"regions":
-						{
-							"bookmarks":
-							{
-								"flags": 144,
-								"icon": "bookmark",
-								"regions":
-								[
-									[
-										2425,
-										2425
-									]
-								],
-								"scope": "bookmarks"
-							}
-						},
-						"selection":
-						[
-							[
-								1561,
-								1561
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 765.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/modules/block.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6580,
-						"regions":
-						{
-							"bookmarks":
-							{
-								"flags": 144,
-								"icon": "bookmark",
-								"regions":
-								[
-									[
-										348,
-										348
-									],
-									[
-										2480,
-										2480
-									],
-									[
-										2555,
-										2555
-									],
-									[
-										4805,
-										4805
-									]
-								],
-								"scope": "bookmarks"
-							}
-						},
-						"selection":
-						[
-							[
-								2265,
-								2265
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1294.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/modules/sprites.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1674,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								24,
-								24
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "js/modules/square.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1679,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								463,
-								463
+								1098,
+								1098
 							]
 						],
 						"settings":
@@ -912,13 +747,116 @@
 					},
 					"stack_index": 3,
 					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/modules/gametable.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2708,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										2511,
+										2511
+									]
+								],
+								"scope": "bookmarks"
+							}
+						},
+						"selection":
+						[
+							[
+								495,
+								495
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 358.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/modules/block.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5525,
+								5525
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3060.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/modules/square.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1718,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								549,
+								549
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 53.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 34.0
+		"height": 25.0
 	},
 	"input":
 	{
@@ -958,7 +896,7 @@
 	"project": "tetris_js.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 46.0
 	},
 	"save_all_on_build": true,
 	"select_file":

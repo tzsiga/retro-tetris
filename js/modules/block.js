@@ -1,8 +1,7 @@
-define(["square", "sprites", "rotation_matrix"], function(Square, Sprite, RotationMatrix) {
+define(["square", "sprites"], function(Square, Sprite) {
 
   function Block(posX, posY, type) {
-    var squares = new Array();
-    var rotationMatrix = new RotationMatrix();
+    var squares = [];
 
     if (typeof posX === "undefined")
       posX = (AREA_WIDTH / 2) - 1;
@@ -14,69 +13,6 @@ define(["square", "sprites", "rotation_matrix"], function(Square, Sprite, Rotati
       type = Math.floor((Math.random() * 7) + 1);
 
     _setType(posX, posY, type);
-
-    function canMoveDown() {
-      if (_numOfMovableSquaresDown() < _width())
-        return false;
-      return true;
-    }
-
-    function moveDown() {
-      if (canMoveDown()) {
-        for (var i = squares.length - 1; i >= 0; i--) {
-          squares[i].moveDown();
-        }
-      }
-    }
-
-    function moveLeft() {
-      if (_numOfMovableSquaresLeft() >= _height()) {
-        for (var i = squares.length - 1; i >= 0; i--) {
-          squares[i].moveLeft();
-        }
-      }
-    }
-
-    function moveRight() {
-      if (_numOfMovableSquaresRight() >= _height()) {
-        for (var i = squares.length - 1; i >= 0; i--) {
-          squares[i].moveRight();
-        }
-      }
-    }
-
-    function rotateLeft() {
-      _rotate(rotationMatrix.left);
-    }
-
-    function rotateRight() {
-      _rotate(rotationMatrix.right);
-    }
-
-    function shiftDownRowsAbove(row) {
-      for (var i = squares.length - 1; i >= 0; i--) {
-        if (squares[i].y() == row - 1)
-          squares[i].moveDown();
-      }
-    }
-
-    function clearRow(rowNumber) {
-      var temp = squares;
-
-      for (var i = squares.length - 1; i >= 0; i--) {
-        if (squares[i].y() == rowNumber) {
-          temp.splice(i, 1);
-        }
-      }
-
-      squares = temp;
-    }
-
-    function drawSquares() {
-      for (var i = squares.length - 1; i >= 0; i--) {
-        squares[i].draw();
-      }
-    }
 
     function _setType(posX, posY, type) {
       var color;
@@ -138,54 +74,21 @@ define(["square", "sprites", "rotation_matrix"], function(Square, Sprite, Rotati
       return { left: leftEdge, right: rightEdge, top: topEdge, bottom: bottomEdge };
     }
 
-    function _width() {
+    function width() {
       return _edges().right - _edges().left + 1;
     }
 
-    function _height() {
+    function height() {
       return _edges().bottom - _edges().top + 1;
     }
 
-    function _numOfMovableSquaresDown() {
-      var n = 0;
-
-      for (var i = squares.length - 1; i >= 0; i--) {
-        if (squares[i].canMoveDown())
-          n++;
-      }
-
-      return n;
-    }
-
-    function _numOfMovableSquaresLeft() {
-      var n = 0;
-
-      for (var i = squares.length - 1; i >= 0; i--) {
-        if (squares[i].canMoveLeft())
-          n++;
-      }
-
-      return n;
-    }
-
-    function _numOfMovableSquaresRight() {
-      var n = 0;
-
-      for (var i = squares.length - 1; i >= 0; i--) {
-        if (squares[i].canMoveRight())
-          n++;
-      }
-
-      return n;
-    }
-
-    function _rotationPoint() {
+    function rotationPoint() {
       return { x: squares[1].x(), y: squares[1].y() };
     }
 
-    function _offsetMatrix() {
-      var rp = _rotationPoint();
-      var matrix = new Array();
+    function offsetMatrix() {
+      var rp = rotationPoint();
+      var matrix = [];
       
       for (var i = squares.length - 1; i >= 0; i--) {
         matrix.push([squares[i].x() - rp.x, squares[i].y() - rp.y]);
@@ -194,57 +97,12 @@ define(["square", "sprites", "rotation_matrix"], function(Square, Sprite, Rotati
       return matrix;
     }
 
-    function _multiply(rotation, vector) {
-      return {
-        x: rotation[0][0] * vector[0] + rotation[1][0] * vector[1],
-        y: rotation[0][1] * vector[0] + rotation[1][1] * vector[1]
-      };
-    }
-
-    function _matrixMultiply(rotation, offset) {
-      var rot = new Array();
-
-      for (var i = 0; i < offset.length; i++) {
-        rot.push(_multiply(rotation, offset[i]));
-      }
-
-      return rot;
-    }
-
-    function _canRotate(rotatedOffset) {
-      var rp = _rotationPoint();
-
-      for (var i = 0; i < rotatedOffset.length - 1; i++) {
-        if (rp.x + rotatedOffset[i].x < 0 || rp.x + rotatedOffset[i].x >= AREA_WIDTH) {
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-    function _rotate(rotationMatrix) {
-      var rotatedOffset = _matrixMultiply(rotationMatrix, _offsetMatrix());
-
-      if (_canRotate(rotatedOffset)) {
-        var rp = _rotationPoint();
-
-        for (var i = squares.length - 1; i >= 0; i--) {
-          squares[i].set(rp.x + rotatedOffset[i].x, rp.y + rotatedOffset[i].y);
-        }
-      }
-    }
-
     return {
-      canMoveDown: canMoveDown,
-      moveDown: moveDown,
-      moveLeft: moveLeft,
-      moveRight: moveRight,
-      rotateLeft: rotateLeft,
-      rotateRight: rotateRight,
-      shiftDownRowsAbove: shiftDownRowsAbove,
-      clearRow: clearRow,
-      drawSquares: drawSquares
+      squares: squares,
+      width: width,
+      height: height,
+      rotationPoint: rotationPoint,
+      offsetMatrix: offsetMatrix
     };
   }
 

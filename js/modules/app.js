@@ -10,25 +10,25 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
       switch(e.keyCode) {
         case 37: // left
           e.preventDefault();
-          gt.getFallingBlock().moveLeft();
+          gt.bl_moveLeft(gt.getFallingBlock());
           break;
         case 39: // right
           e.preventDefault();
-          gt.getFallingBlock().moveRight();
+          gt.bl_moveRight(gt.getFallingBlock());
           break;
         case 38: // up
           e.preventDefault();
-          gt.getFallingBlock().rotateLeft();
+          gt.bl_rotateLeft(gt.getFallingBlock());
           break;
         case 40: // down 
           e.preventDefault();
-          gt.getFallingBlock().rotateRight();
+          gt.bl_rotateRight(gt.getFallingBlock());
           break;
         case 32: // space
           e.preventDefault();
-          gt.getFallingBlock().moveDown();
+          gt.bl_moveDown(gt.getFallingBlock());
 
-          if (!gt.getFallingBlock().canMoveDown())
+          if (!gt.bl_canMoveDown(gt.getFallingBlock()))
             gt.clearFullRows();
 
           break;
@@ -38,9 +38,9 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
     });
 
     var timer = $.timer(function() {
-      gt.getFallingBlock().moveDown();
+      gt.bl_moveDown(gt.getFallingBlock());
 
-      if (!gt.getFallingBlock().canMoveDown()) {
+      if (!gt.bl_canMoveDown(gt.getFallingBlock())) {
         gt.clearFullRows();
 
         if (gt.blocks.length < 12) {

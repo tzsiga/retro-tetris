@@ -1,4 +1,4 @@
-define(["jquery"], function($) {
+define([], function() {
 
   function Square(_x, _y, _color) {
     var x = (typeof _x !== "undefined") ? _x : 0;
@@ -22,59 +22,15 @@ define(["jquery"], function($) {
       Y(_y);
     }
 
-    function canMoveDown() {
-      if (_neighbours().bottom == RESERVED || y + 1 > AREA_HEIGHT - 1)
-        return false;
-      return true;
-    }
-
-    function canMoveLeft() {
-      if (_neighbours().left == RESERVED || x - 1 < 0)
-        return false;
-      return true;
-    }
-
-    function canMoveRight() {
-      if (_neighbours().right == RESERVED || x + 1 > AREA_WIDTH - 1)
-        return false;
-      return true;
-    }
-
-    function moveDown() {
-      y += 1;
-    }
-
-    function moveLeft() {
-      x -= 1;
-    }
-
-    function moveRight() {
-      x += 1;
-    }
-
-    function draw() {
-      $("tr." + y + " td." + x).css("background-color", color).text(RESERVED);
-    }
-
-    function _neighbours() {
-      return {
-        left: $("tr." + y + " td." + (x - 1)).text(),
-        right: $("tr." + y + " td." + (x + 1)).text(),
-        bottom: $("tr." + (y + 1) + " td." + x).text()
-      };
+    function Color() {
+      return color;
     }
 
     return {
       x: X,
       y: Y,
       set: set,
-      canMoveDown: canMoveDown,
-      canMoveLeft: canMoveLeft,
-      canMoveRight: canMoveRight,
-      moveDown: moveDown,
-      moveLeft: moveLeft,
-      moveRight: moveRight,
-      draw: draw
+      color: Color
     };
   }
 

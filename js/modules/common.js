@@ -6,5 +6,4 @@ define(["jquery"], function($) {
           PIECE_COLOR = "red",
           BG_COLOR = $("body").css("background-color"),
           RESERVED = "reserved";
-
 });
