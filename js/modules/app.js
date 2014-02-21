@@ -27,8 +27,8 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
           e.preventDefault();
           gt.moveBlockDown();
 
-          if (!gt.isBlockFalling())
-            gt.clearFullRows();
+          //if (!gt.isBlockFalling())
+            //gt.clearFullRows();
 
           break;
       }
@@ -37,9 +37,9 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
     });
 
     var timer = $.timer(function() {
-      gt.moveBlockDown();
-
-      if (!gt.isBlockFalling()) {
+      if (gt.isBlockFalling()) {
+        gt.moveBlockDown();
+      } else {
         gt.clearFullRows();
 
         if (gt.blocks.length < 12) {

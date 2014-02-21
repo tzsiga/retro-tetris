@@ -13,14 +13,15 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
     }
 
     function isBlockFalling() {
-      return _movableSquaresDownInBlock(_fallingBlock()) >= _fallingBlock().width();
+      return _movableSquaresDownInBlock(_fallingBlock()) == _fallingBlock().width();
     }
 
     function clearFullRows() {
       var fullRows = _getFullRows();
 
-      //_clearRows(fullRows);
-      //_shrink(fullRows);
+      console.log("full rows: " + _getFullRows().length);
+      _clearRows(fullRows);
+      _shrink(fullRows);
     }
 
     function moveBlockDown() {
