@@ -1,62 +1,58 @@
-define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix) {
+define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatrix) {
 
   function GameTable(height, width) {
     var blocks = [];
-    var table = _generateTable(height, width);
-    addBlock(new Block());
-
     var rotationMatrix = new RotationMatrix();
+    var table = _generateTable(height, width);
+    $("body").append(table);
+
+    addBlock(new Block());
 
     function addBlock(block) {
       blocks.push(block);
     }
 
-    function fallingBlock() {
-      return blocks[blocks.length - 1];
+    function isBlockFalling() {
+      return _movableSquaresDownInBlock(_fallingBlock()) >= _fallingBlock().width();
     }
 
     function clearFullRows() {
       var fullRows = _getFullRows();
 
-      _clearRows(fullRows);
-      _shrink(fullRows);
-    }
-
-    function canBlockMoveDown(block) {
-      return _movableSquaresDownInBlock(block) >= block.width();
-
+      //_clearRows(fullRows);
+      //_shrink(fullRows);
     }
 
     function moveBlockDown() {
-      if (canBlockMoveDown(fallingBlock())) {
-        for (var i = fallingBlock().squares.length - 1; i >= 0; i--) {
-          _moveSquareDown(fallingBlock().squares[i]);
+      if (_movableSquaresDownInBlock(_fallingBlock()) >= _fallingBlock().width()) {
+        for (var i = _fallingBlock().squares.length - 1; i >= 0; i--) {
+          _moveSquareDown(_fallingBlock().squares[i]);
         }
       }
     }
 
     function moveBlockLeft() {
-      if (_movableSquaresLeftInBlock(fallingBlock()) >= fallingBlock().height()) {
-        for (var i = fallingBlock().squares.length - 1; i >= 0; i--) {
-          _moveSquareLeft(fallingBlock().squares[i]);
+      if (_movableSquaresLeftInBlock(_fallingBlock()) >= _fallingBlock().height()) {
+        for (var i = _fallingBlock().squares.length - 1; i >= 0; i--) {
+          _fallingBlock().squares[i].x(_fallingBlock().squares[i].x() - 1);
         }
       }
     }
 
     function moveBlockRight() {
-      if (_movableSquaresRightInBlock(fallingBlock()) >= fallingBlock().height()) {
-        for (var i = fallingBlock().squares.length - 1; i >= 0; i--) {
-          _moveSquareRight(fallingBlock().squares[i]);
+      if (_movableSquaresRightInBlock(_fallingBlock()) >= _fallingBlock().height()) {
+        for (var i = _fallingBlock().squares.length - 1; i >= 0; i--) {
+          _fallingBlock().squares[i].x(_fallingBlock().squares[i].x() + 1);
         }
       }
     }
 
     function rotateBlockLeft() {
-      _rotateBlock(rotationMatrix.left, fallingBlock());
+      _rotateBlock(rotationMatrix.left);
     }
 
     function rotateBlockRight() {
-      _rotateBlock(rotationMatrix.right, fallingBlock());
+      _rotateBlock(rotationMatrix.right);
     }
 
     function redraw() {
@@ -81,14 +77,26 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
     }
 
     function _clear() {
-      $(table).find("td").each(function(id, cell) {
+      $(table).find("td").each(function (id, cell) {
         $(cell).css("background-color", BG_COLOR).text("");
       });
     }
 
+    function _drawBlocks() {
+      for (var j = blocks.length - 1; j >= 0; j--) {
+        for (var i = blocks[j].squares.length - 1; i >= 0; i--) {
+          $("tr." + blocks[j].squares[i].y() + " td." + blocks[j].squares[i].x()
+          ).css("background-color", blocks[j].squares[i].color()).text(RESERVED);
+        }
+      }
+    }
+
     function _isReservedCell(x, y) {
       return $("tr." + y + " td." + x).text() === RESERVED;
+    }
 
+    function _fallingBlock() {
+      return blocks[blocks.length - 1];
     }
 
     function _getFullRows() {
@@ -110,15 +118,23 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
     }
 
     function _clearRows(rowNumbers) {
-      for (var i = rowNumbers.length - 1; i >= 0; i--) {
-        _clearRow(rowNumbers[i]);
+      for (var j = rowNumbers.length - 1; j >= 0; j--) {
+        for (var i = blocks.length - 1; i >= 0; i--) {
+          _clearRowInBlock(rowNumbers[j], blocks[i]);
+        }
       }
     }
 
-    function _clearRow(rowNumber) {
-      for (var i = blocks.length - 1; i >= 0; i--) {
-        _clearRowInBlock(rowNumber, blocks[i]);
+    function _clearRowInBlock(rowNumber, block) {
+      var temp = block.squares;
+
+      for (var i = block.squares.length - 1; i >= 0; i--) {
+        if (block.squares[i].y() == rowNumber) {
+          temp.splice(i, 1);
+        }
       }
+
+      block.squares = temp;
     }
 
     function _shrink(emptyRows) {
@@ -137,14 +153,6 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       }
     }
 
-    function _drawBlocks() {
-      var gt = this;
-
-      for (var i = blocks.length - 1; i >= 0; i--) {
-        _drawBlock(blocks[i]);
-      }
-    }
-
     function _shiftDownBlockAboveRow(row, block) {
       for (var i = block.squares.length - 1; i >= 0; i--) {
         if (block.squares[i].y() == row - 1)
@@ -152,29 +160,11 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       }
     }
 
-    function _clearRowInBlock(rowNumber, block) {
-      var temp = block.squares;
-
-      for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (block.squares[i].y() == rowNumber) {
-          temp.splice(i, 1);
-        }
-      }
-
-      block.squares = temp;
-    }
-
-    function _drawBlock(block) {
-      for (var i = block.squares.length - 1; i >= 0; i--) {
-        _drawSquare(block.squares[i]);
-      }
-    }
-
     function _movableSquaresDownInBlock(block) {
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (_canSquareMoveDown(block.squares[i]))
+        if (!(_getSquareNeighbours(block.squares[i]).bottom == RESERVED || block.squares[i].y() + 1 > AREA_HEIGHT - 1))
           n++;
       }
 
@@ -185,7 +175,7 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (_canSquareMoveLeft(block.squares[i]))
+        if (!(_getSquareNeighbours(block.squares[i]).left == RESERVED || block.squares[i].x() - 1 < 0))
           n++;
       }
 
@@ -196,7 +186,7 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (_canSquareMoveRight(block.squares[i]))
+        if (!(_getSquareNeighbours(block.squares[i]).right == RESERVED || block.squares[i].x() + 1 > AREA_WIDTH - 1))
           n++;
       }
 
@@ -215,19 +205,19 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       return true;
     }
 
-    function _rotateBlock(rotationMatrix, block) {
-      var rotatedOffset = _matrixMultiply(rotationMatrix, block.offsetMatrix());
+    function _rotateBlock(rotationMatrix) {
+      var rotatedOffset = _matrixMultiply(rotationMatrix, _fallingBlock().offsetMatrix());
 
-      if (_canRotateBlock(rotatedOffset, block)) {
-        var rp = block.rotationPoint();
+      if (_canRotateBlock(rotatedOffset, _fallingBlock())) {
+        var rp = _fallingBlock().rotationPoint();
 
-        for (var i = block.squares.length - 1; i >= 0; i--) {
-          block.squares[i].setPos(rp.x + rotatedOffset[i].x, rp.y + rotatedOffset[i].y);
+        for (var i = _fallingBlock().squares.length - 1; i >= 0; i--) {
+          _fallingBlock().squares[i].setPos(rp.x + rotatedOffset[i].x, rp.y + rotatedOffset[i].y);
         }
       }
     }
 
-    function _multiply(rotation, vector) {
+    function _getProduct(rotation, vector) {
       return {
         x: rotation[0][0] * vector[0] + rotation[1][0] * vector[1],
         y: rotation[0][1] * vector[0] + rotation[1][1] * vector[1]
@@ -238,14 +228,10 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       var rot = [];
 
       for (var i = 0; i < offset.length; i++) {
-        rot.push(_multiply(rotation, offset[i]));
+        rot.push(_getProduct(rotation, offset[i]));
       }
 
       return rot;
-    }
-
-    function _drawSquare(square) {
-      $("tr." + square.y() + " td." + square.x()).css("background-color", square.getColor()).text(RESERVED);
     }
 
     function _getSquareNeighbours(square) {
@@ -256,45 +242,19 @@ define(["jquery", "block", "rotation_matrix"], function($, Block, RotationMatrix
       };
     }
 
-    function _canSquareMoveDown(square) {
-      return !(_getSquareNeighbours(square).bottom == RESERVED || square.y() + 1 > AREA_HEIGHT - 1);
-
-    }
-
-    function _canSquareMoveLeft(square) {
-      return !(_getSquareNeighbours(square).left == RESERVED || square.x() - 1 < 0);
-
-    }
-
-    function _canSquareMoveRight(square) {
-      return !(_getSquareNeighbours(square).right == RESERVED || square.x() + 1 > AREA_WIDTH - 1);
-
-    }
-
     function _moveSquareDown(square) {
       square.y(square.y() + 1);
     }
 
-    function _moveSquareLeft(square) {
-      square.x(square.x() - 1);
-    }
-
-    function _moveSquareRight(square) {
-      square.x(square.x() + 1);
-    }
-
     return {
+      blocks: blocks,
+      addBlock: addBlock,
       moveBlockDown: moveBlockDown,
-      canBlockMoveDown: canBlockMoveDown,
       moveBlockLeft: moveBlockLeft,
       moveBlockRight: moveBlockRight,
       rotateBlockLeft: rotateBlockLeft,
       rotateBlockRight: rotateBlockRight,
-
-      table: table,
-      blocks: blocks,
-      addBlock: addBlock,
-      fallingBlock: fallingBlock,
+      isBlockFalling: isBlockFalling,
       clearFullRows: clearFullRows,
       redraw: redraw
     };

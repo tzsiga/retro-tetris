@@ -22,7 +22,7 @@ define([], function() {
       Y(_y);
     }
 
-    function getColor() {
+    function Color() {
       return color;
     }
 
@@ -30,7 +30,7 @@ define([], function() {
       x: X,
       y: Y,
       setPos: setPos,
-      getColor: getColor
+      color: Color
     };
   }
 

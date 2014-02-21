@@ -3,7 +3,6 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
   $(document).ready(function() {
     var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
     
-    $("body").append(gt.table);
     gt.redraw();
 
     $("body").keydown(function(e) {
@@ -28,7 +27,7 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
           e.preventDefault();
           gt.moveBlockDown();
 
-          if (!gt.canBlockMoveDown(gt.fallingBlock()))
+          if (!gt.isBlockFalling())
             gt.clearFullRows();
 
           break;
@@ -40,7 +39,7 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
     var timer = $.timer(function() {
       gt.moveBlockDown();
 
-      if (!gt.canBlockMoveDown(gt.fallingBlock())) {
+      if (!gt.isBlockFalling()) {
         gt.clearFullRows();
 
         if (gt.blocks.length < 12) {

@@ -37,26 +37,6 @@ define(["square", "sprites"], function(Square, Sprite) {
       return matrix;
     }
 
-    function _edges() {
-      var leftEdge = AREA_WIDTH;
-      var rightEdge = 0;
-      var topEdge = AREA_HEIGHT;
-      var bottomEdge = 0;
-
-      for (var i = squares.length - 1; i >= 0; i--) {
-        if (squares[i].x() < leftEdge)
-          leftEdge = squares[i].x();
-        if (squares[i].x() > rightEdge)
-          rightEdge = squares[i].x();
-        if (squares[i].y() < topEdge)
-          topEdge = squares[i].y();
-        if (squares[i].y() > bottomEdge)
-          bottomEdge = squares[i].y();
-      }
-
-      return { left: leftEdge, right: rightEdge, top: topEdge, bottom: bottomEdge };
-    }
-
     function _setType(posX, posY, type) {
       var color;
       var mask;
@@ -95,6 +75,26 @@ define(["square", "sprites"], function(Square, Sprite) {
       for (var i = mask.length - 1; i >= 0; i--) {
         squares.push(new Square(posX + mask[i].x, posY + mask[i].y, color));
       }
+    }
+
+    function _edges() {
+      var leftEdge = AREA_WIDTH;
+      var rightEdge = 0;
+      var topEdge = AREA_HEIGHT;
+      var bottomEdge = 0;
+
+      for (var i = squares.length - 1; i >= 0; i--) {
+        if (squares[i].x() < leftEdge)
+          leftEdge = squares[i].x();
+        if (squares[i].x() > rightEdge)
+          rightEdge = squares[i].x();
+        if (squares[i].y() < topEdge)
+          topEdge = squares[i].y();
+        if (squares[i].y() > bottomEdge)
+          bottomEdge = squares[i].y();
+      }
+
+      return { left: leftEdge, right: rightEdge, top: topEdge, bottom: bottomEdge };
     }
 
     return {
