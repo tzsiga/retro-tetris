@@ -1,4 +1,4 @@
-define([], function() {
+define([], function () {
 
   function Square(_x, _y, _color) {
     var x = (typeof _x !== "undefined") ? _x : 0;

@@ -1,4 +1,4 @@
-define(["square", "sprites"], function(Square, Sprite) {
+define(["square", "sprites"], function (Square, Sprite) {
 
   function Block(posX, posY, type) {
     var squares = [];
@@ -29,7 +29,7 @@ define(["square", "sprites"], function(Square, Sprite) {
     function offsetMatrix() {
       var rp = rotationPoint();
       var matrix = [];
-      
+
       for (var i = squares.length - 1; i >= 0; i--) {
         matrix.push([squares[i].x() - rp.x, squares[i].y() - rp.y]);
       }

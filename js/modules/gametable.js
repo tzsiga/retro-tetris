@@ -16,14 +16,6 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
       return _movableSquaresDownInBlock(_fallingBlock()) == _fallingBlock().width();
     }
 
-    function clearFullRows() {
-      var fullRows = _getFullRows();
-
-      console.log("full rows: " + _getFullRows().length);
-      _clearRows(fullRows);
-      _shrink(fullRows);
-    }
-
     function moveBlockDown() {
       if (_movableSquaresDownInBlock(_fallingBlock()) >= _fallingBlock().width()) {
         for (var i = _fallingBlock().squares.length - 1; i >= 0; i--) {
@@ -56,6 +48,15 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
       _rotateBlock(rotationMatrix.right);
     }
 
+    function clearFullRows() {
+      var fullRows = _getFullRows();
+
+      if (fullRows.length > 0) {
+        _clearRows(fullRows);
+        _shrink(fullRows);
+      }
+    }
+
     function redraw() {
       _clear();
       _drawBlocks();
@@ -86,8 +87,8 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
     function _drawBlocks() {
       for (var j = blocks.length - 1; j >= 0; j--) {
         for (var i = blocks[j].squares.length - 1; i >= 0; i--) {
-          $("tr." + blocks[j].squares[i].y() + " td." + blocks[j].squares[i].x()
-          ).css("background-color", blocks[j].squares[i].color()).text(RESERVED);
+          $("tr." + blocks[j].squares[i].y() + " td." + blocks[j].squares[i].x())
+            .css("background-color", blocks[j].squares[i].color()).text(RESERVED);
         }
       }
     }
@@ -130,31 +131,32 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
       var temp = block.squares;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (block.squares[i].y() == rowNumber) {
+        if (block.squares[i].y() == rowNumber)
           temp.splice(i, 1);
-        }
       }
 
       block.squares = temp;
     }
 
     function _shrink(emptyRows) {
-      emptyRows.sort();
+      emptyRows.sort(function (a, b) {
+        return b - a
+      });
 
       for (var i = emptyRows.length - 1; i >= 0; i--) {
-        _fillRow(emptyRows[i]);
+        _shiftRowDown(emptyRows[i]);
       }
     }
 
-    function _fillRow(emptyRow) {
+    function _shiftRowDown(emptyRow) {
       for (var row = emptyRow; row >= 0; row--) {
         for (var i = blocks.length - 1; i >= 0; i--) {
-          _shiftDownBlockAboveRow(row, blocks[i]);
+          _shiftBlockDownAboveRow(row, blocks[i]);
         }
       }
     }
 
-    function _shiftDownBlockAboveRow(row, block) {
+    function _shiftBlockDownAboveRow(row, block) {
       for (var i = block.squares.length - 1; i >= 0; i--) {
         if (block.squares[i].y() == row - 1)
           _moveSquareDown(block.squares[i]);

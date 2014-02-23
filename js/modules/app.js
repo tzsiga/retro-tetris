@@ -26,10 +26,6 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
         case KEYCODE_SPACE:
           e.preventDefault();
           gt.moveBlockDown();
-
-          //if (!gt.isBlockFalling())
-            //gt.clearFullRows();
-
           break;
       }
 
@@ -42,7 +38,7 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
       } else {
         gt.clearFullRows();
 
-        if (gt.blocks.length < 12) {
+        if (gt.blocks.length < 120) {
           gt.addBlock(new Block());
         }
       }
