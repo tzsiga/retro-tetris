@@ -1,4 +1,4 @@
-define(["square", "sprites", "common"], function (Square, Sprite, Setting) {
+define(["square", "sprites", "setting"], function (Square, Sprite, Setting) {
 
   function Block(posX, posY, type) {
     var squares = [];

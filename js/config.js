@@ -3,10 +3,10 @@ require.config({
   baseUrl: "js/",
 
   paths: {
-    jquery: "lib/jquery-1.10.2.min",
+    jquery: "lib/jquery-1.11.0.min",
     jquery_timer: "lib/jquery.timer",
 
-    common: "modules/common",
+    setting: "modules/setting",
     app: "modules/app",
     gametable: "modules/gametable",
     block: "modules/block",

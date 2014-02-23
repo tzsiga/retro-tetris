@@ -1,4 +1,4 @@
-define(["jquery", "block", "rotation_matrix", "common"], function ($, Block, RotationMatrix, Setting) {
+define(["jquery", "block", "rotation_matrix", "setting"], function ($, Block, RotationMatrix, Setting) {
 
   function GameTable(height, width) {
     var blocks = [];
