@@ -3,7 +3,7 @@ define([], function () {
   function Square(_x, _y, _color) {
     var x = (typeof _x !== "undefined") ? _x : 0;
     var y = (typeof _y !== "undefined") ? _y : 0;
-    var color = (typeof _color !== "undefined") ? _color : PIECE_COLOR;
+    var color = (typeof _color !== "undefined") ? _color : "";
 
     function X(_x) {
       if (typeof _x !== "undefined")

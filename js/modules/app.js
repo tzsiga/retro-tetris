@@ -1,29 +1,29 @@
-define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, jquery_timer, GameTable, Block) {
+define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, jquery_timer, GameTable, Block, Setting) {
 
   $(document).ready(function() {
-    var gt = new GameTable(AREA_HEIGHT, AREA_WIDTH);
+    var gt = new GameTable(Setting.AREA_HEIGHT, Setting.AREA_WIDTH);
     
     gt.redraw();
 
     $("body").keydown(function(e) {
       switch(e.keyCode) {
-        case KEYCODE_LEFT:
+        case Setting.KEYCODE_LEFT:
           e.preventDefault();
           gt.moveBlockLeft();
           break;
-        case KEYCODE_RIGHT:
+        case Setting.KEYCODE_RIGHT:
           e.preventDefault();
           gt.moveBlockRight();
           break;
-        case KEYCODE_UP:
+        case Setting.KEYCODE_UP:
           e.preventDefault();
           gt.rotateBlockLeft();
           break;
-        case KEYCODE_DOWN:
+        case Setting.KEYCODE_DOWN:
           e.preventDefault();
           gt.rotateBlockRight();
           break;
-        case KEYCODE_SPACE:
+        case Setting.KEYCODE_SPACE:
           e.preventDefault();
           gt.moveBlockDown();
           break;
@@ -44,7 +44,7 @@ define(["jquery", "jquery_timer", "gametable", "block", "common"], function($, j
       }
 
       gt.redraw();
-    }).set({ time : TIMESTAP, autostart : true });
+    }).set({ time : Setting.TIMESTAP, autostart : true });
 
   });
 });

@@ -1,4 +1,4 @@
-define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatrix) {
+define(["jquery", "block", "rotation_matrix", "common"], function ($, Block, RotationMatrix, Setting) {
 
   function GameTable(height, width) {
     var blocks = [];
@@ -80,7 +80,7 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
 
     function _clear() {
       $(table).find("td").each(function (id, cell) {
-        $(cell).css("background-color", BG_COLOR).text("");
+        $(cell).css("background-color", $("body").css("background-color")).text("");
       });
     }
 
@@ -88,13 +88,13 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
       for (var j = blocks.length - 1; j >= 0; j--) {
         for (var i = blocks[j].squares.length - 1; i >= 0; i--) {
           $("tr." + blocks[j].squares[i].y() + " td." + blocks[j].squares[i].x())
-            .css("background-color", blocks[j].squares[i].color()).text(RESERVED);
+            .css("background-color", blocks[j].squares[i].color()).text(Setting.RESERVED);
         }
       }
     }
 
     function _isReservedCell(x, y) {
-      return $("tr." + y + " td." + x).text() === RESERVED;
+      return $("tr." + y + " td." + x).text() === Setting.RESERVED;
     }
 
     function _fallingBlock() {
@@ -104,10 +104,10 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
     function _getFullRows() {
       var rowNumbers = [];
 
-      for (var y = AREA_HEIGHT - 1; y >= 0; y--) {
+      for (var y = Setting.AREA_HEIGHT - 1; y >= 0; y--) {
         var reservedRow = true;
 
-        for (var x = AREA_WIDTH - 1; x >= 0; x--) {
+        for (var x = Setting.AREA_WIDTH - 1; x >= 0; x--) {
           if (!_isReservedCell(x, y))
             reservedRow = false;
         }
@@ -167,7 +167,7 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (!(_getSquareNeighbours(block.squares[i]).bottom == RESERVED || block.squares[i].y() + 1 > AREA_HEIGHT - 1))
+        if (!(_getSquareNeighbours(block.squares[i]).bottom == Setting.RESERVED || block.squares[i].y() + 1 > Setting.AREA_HEIGHT - 1))
           n++;
       }
 
@@ -178,7 +178,7 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (!(_getSquareNeighbours(block.squares[i]).left == RESERVED || block.squares[i].x() - 1 < 0))
+        if (!(_getSquareNeighbours(block.squares[i]).left == Setting.RESERVED || block.squares[i].x() - 1 < 0))
           n++;
       }
 
@@ -189,23 +189,11 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
       var n = 0;
 
       for (var i = block.squares.length - 1; i >= 0; i--) {
-        if (!(_getSquareNeighbours(block.squares[i]).right == RESERVED || block.squares[i].x() + 1 > AREA_WIDTH - 1))
+        if (!(_getSquareNeighbours(block.squares[i]).right == Setting.RESERVED || block.squares[i].x() + 1 > Setting.AREA_WIDTH - 1))
           n++;
       }
 
       return n;
-    }
-
-    function _canRotateBlock(rotatedOffset, block) {
-      var rp = block.rotationPoint();
-
-      for (var i = 0; i < rotatedOffset.length - 1; i++) {
-        if (rp.x + rotatedOffset[i].x < 0 || rp.x + rotatedOffset[i].x >= AREA_WIDTH) {
-          return false;
-        }
-      }
-
-      return true;
     }
 
     function _rotateBlock(rotationMatrix) {
@@ -218,6 +206,17 @@ define(["jquery", "block", "rotation_matrix"], function ($, Block, RotationMatri
           _fallingBlock().squares[i].setPos(rp.x + rotatedOffset[i].x, rp.y + rotatedOffset[i].y);
         }
       }
+    }
+
+    function _canRotateBlock(rotatedOffset, block) {
+      for (var i = 0; i < rotatedOffset.length - 1; i++) {
+        if (block.rotationPoint().x + rotatedOffset[i].x < 0
+          || block.rotationPoint().x + rotatedOffset[i].x >= Setting.AREA_WIDTH) {
+          return false;
+        }
+      }
+
+      return true;
     }
 
     function _getProduct(rotation, vector) {

@@ -1,10 +1,10 @@
-define(["square", "sprites"], function (Square, Sprite) {
+define(["square", "sprites", "common"], function (Square, Sprite, Setting) {
 
   function Block(posX, posY, type) {
     var squares = [];
 
     if (typeof posX === "undefined")
-      posX = (AREA_WIDTH / 2) - 1;
+      posX = (Setting.AREA_WIDTH / 2) - 1;
 
     if (typeof posY === "undefined")
       posY = 0;
@@ -78,9 +78,9 @@ define(["square", "sprites"], function (Square, Sprite) {
     }
 
     function _edges() {
-      var leftEdge = AREA_WIDTH;
+      var leftEdge = Setting.AREA_WIDTH;
       var rightEdge = 0;
-      var topEdge = AREA_HEIGHT;
+      var topEdge = Setting.AREA_HEIGHT;
       var bottomEdge = 0;
 
       for (var i = squares.length - 1; i >= 0; i--) {
